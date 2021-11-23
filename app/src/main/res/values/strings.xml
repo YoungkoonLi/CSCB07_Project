@@ -6,4 +6,6 @@
     <string name="home">HOME</string>
     <string name="orders">ORDERS</string>
     <string name="setting">SETTING</string>
+    <string name="username">Enter username</string>
+    <string name="password">Enter password</string>
 </resources>

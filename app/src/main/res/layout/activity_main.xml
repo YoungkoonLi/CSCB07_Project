@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,99 +10,100 @@
         android:id="@+id/textview"
         android:layout_width="168dp"
         android:layout_height="77dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="24dp"
         android:text="Sign In"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/username"
+        android:textColor="@color/black"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editUsername"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
+        android:hint="@string/username"
         android:inputType="textPersonName"
-        android:text="username"
-        app:layout_constraintBottom_toTopOf="@+id/editPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toEndOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/textview" />
 
     <EditText
         android:id="@+id/editPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
+        android:hint="@string/password"
         android:inputType="textPersonName"
-        android:text="password"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="251dp" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/editUsername"
+        app:layout_constraintVertical_bias="0.004" />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
         android:text="Username"
         android:textSize="20dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editUsername"
-        app:layout_constraintEnd_toStartOf="@+id/editUsername"
-        app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="44dp"
         android:text="Password"
         android:textSize="20dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editPassword"
-        app:layout_constraintEnd_toStartOf="@+id/editUsername"
-        app:layout_constraintHorizontal_bias="0.828"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <Button
         android:id="@+id/signupForStore"
-        android:layout_width="150dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_margin="24dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="184dp"
         android:onClick="displayUser2"
         android:text="Sign Up As Store"
-        app:layout_constraintBaseline_toBaselineOf="@+id/signupForCustomer"
-        app:layout_constraintEnd_toStartOf="@+id/signupForCustomer"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.464" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="359dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="345dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword">
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
             android:id="@+id/radioStoreOwner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="44dp"
+            android:layout_margin="10dp"
             android:gravity="center"
             android:text="Store Owner"
             android:textSize="20dp"
@@ -116,8 +116,7 @@
             android:id="@+id/radioCustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="68dp"
+            android:layout_margin="10dp"
             android:gravity="center"
             android:text="Customer"
             android:textSize="20dp"
@@ -129,27 +128,27 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginTop="28dp"
         android:onClick="displayUser"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.743"
+        app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupForCustomer"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/signupForCustomer"
-        android:layout_width="151dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="24dp"
         android:onClick="displayUser3"
         android:text="Sign Up as Customer"
+        app:layout_constraintBaseline_toBaselineOf="@+id/signupForStore"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintStart_toEndOf="@+id/signupForStore" />
 
     <!--    <RadioButton-->
     <!--        android:id="@+id/radioStoreOwner"-->
