@@ -8,6 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.UTFresh" />
+        android:theme="@style/Theme.UTFresh">
+        <activity
+            android:name=".StoreOwnerHome"
+            android:exported="false" />
+    </application>
 
 </manifest>
