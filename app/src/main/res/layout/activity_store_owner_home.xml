@@ -6,4 +6,81 @@
     android:layout_height="match_parent"
     tools:context=".StoreOwnerHome">
 
+    <Button
+        android:id="@+id/setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="324dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/setting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_new_products"
+        app:layout_constraintVertical_bias="0.151" />
+
+    <TextView
+        android:id="@+id/store_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="116dp"
+        android:text="@string/store_name"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/product_list"
+        android:layout_width="143dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="136dp"
+        android:text="@string/product_list"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/add_new_products"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/store_name" />
+
+    <Button
+        android:id="@+id/add_new_products"
+        android:layout_width="143dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/add_new_products"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/store_name" />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="324dp"
+        android:text="@string/home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_list"
+        app:layout_constraintVertical_bias="0.139" />
+
+    <Button
+        android:id="@+id/orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="324dp"
+        android:layout_marginEnd="52dp"
+        android:text="@string/orders"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/setting"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/home"
+        app:layout_constraintTop_toBottomOf="@+id/add_new_products"
+        app:layout_constraintVertical_bias="0.151" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">UT Fresh</string>
+    <string name="store_name">Store Name</string>
+    <string name="product_list">Product List</string>
+    <string name="add_new_products">Add New Store Products</string>
+    <string name="home">HOME</string>
+    <string name="orders">ORDERS</string>
+    <string name="setting">SETTING</string>
 </resources>
