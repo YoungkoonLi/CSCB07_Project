@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UTFresh">
         <activity
+            android:name=".StoreSignUp"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerSignUp"
+            android:exported="false" />
+        <activity
             android:name=".AddNewProduct"
             android:exported="false" />
         <activity
