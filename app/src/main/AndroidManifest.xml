@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UTFresh">
         <activity
+            android:name=".Setting"
+            android:exported="false" />
+        <activity
+            android:name=".Orders"
+            android:exported="false" />
+        <activity
             android:name=".StoreSignUp"
             android:exported="false" />
         <activity
@@ -26,9 +32,10 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

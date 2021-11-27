@@ -8,4 +8,13 @@
     <string name="setting">SETTING</string>
     <string name="username">Enter username</string>
     <string name="password">Enter password</string>
+    <string name="title_add_new">Add New Store Products</string>
+    <string name="product_name">Product Name</string>
+    <string name="price">Price</string>
+    <string name="category">Category</string>
+    <string name="product_picture">Product Picture</string>
+    <string name="save">SAVE</string>
+    <string name="edit_product_name">Enter a product name</string>
+    <string name="edit_price">Enter a price</string>
+    <string name="edit_category">Enter a category</string>
 </resources>

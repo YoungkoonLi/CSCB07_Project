@@ -29,6 +29,27 @@ public class StoreOwnerHome extends AppCompatActivity {
                 openActivityAddNewProduct();
             }
         });
+
+        Button home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivityStoreOwnerHome();
+            }
+        });
+
+        Button orders = findViewById(R.id.orders);
+        orders.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivityOrders();
+            }
+        });
+
+        Button setting = findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivitySetting();
+            }
+        });
     }
 
     public void openActivityProductList(){
@@ -38,6 +59,22 @@ public class StoreOwnerHome extends AppCompatActivity {
 
     public void openActivityAddNewProduct(){
         Intent intent = new Intent(this, AddNewProduct.class );
+        startActivity(intent);
+    }
+
+    public void openActivityStoreOwnerHome(){
+        Intent intent = new Intent(this, StoreOwnerHome.class);
+        startActivity(intent);
+    }
+
+
+    public void openActivityOrders(){
+        Intent intent = new Intent(this, Orders.class);
+        startActivity(intent);
+    }
+
+    public void openActivitySetting(){
+        Intent intent = new Intent(this, Setting.class);
         startActivity(intent);
     }
 }
