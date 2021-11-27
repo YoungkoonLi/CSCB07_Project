@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class AddNewProduct extends AppCompatActivity {
 
@@ -13,6 +15,18 @@ public class AddNewProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
+
+        EditText inout_name = findViewById(R.id.input_name);
+        EditText inout_price = findViewById(R.id.input_price);
+        EditText inout_category = findViewById(R.id.input_category);
+        ImageButton input_image = findViewById(R.id.input_image);
+        Button save_button = findViewById(R.id.save_button);
+        save_button.setOnClickListener(v->
+        {
+
+        });
+
+
 
         Button home = findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener(){

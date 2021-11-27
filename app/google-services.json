@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "978135393373",
+    "project_id": "ut-fresh",
+    "storage_bucket": "ut-fresh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978135393373:android:7e5be9737516a7f66c59b4",
+        "android_client_info": {
+          "package_name": "com.example.utfresh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978135393373-cb8b5huthtnrb0hmb4314d6adjn2tmrn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAEC7SyqXER09VKyKuBB44b5FnVFcWa88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978135393373-cb8b5huthtnrb0hmb4314d6adjn2tmrn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
