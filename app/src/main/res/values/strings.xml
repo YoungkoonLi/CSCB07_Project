@@ -17,4 +17,8 @@
     <string name="edit_product_name">Enter a product name</string>
     <string name="edit_price">Enter a price</string>
     <string name="edit_category">Enter a category</string>
+    <string name="all_orders">All Orders</string>
+    <string name="ready_for_pick_up">Ready For Pick Up</string>
+    <string name="pending">Pending</string>
+    <string name="complete">Complete</string>
 </resources>
