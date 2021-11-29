@@ -21,6 +21,7 @@ public class CustomerMain extends AppCompatActivity {
         setContentView(R.layout.activity_customer_main);
     }
 
+    //Load store from firebase one by one
     protected void loadStore(){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores");
         ref.child("s1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

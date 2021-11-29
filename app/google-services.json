@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "978135393373",
+    "firebase_url": "https://ut-fresh-default-rtdb.firebaseio.com",
     "project_id": "ut-fresh",
     "storage_bucket": "ut-fresh.appspot.com"
   },
