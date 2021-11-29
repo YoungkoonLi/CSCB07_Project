@@ -21,4 +21,5 @@
     <string name="ready_for_pick_up">Ready For Pick Up</string>
     <string name="pending">Pending</string>
     <string name="complete">Complete</string>
+    <string name="email">Enter email</string>
 </resources>
