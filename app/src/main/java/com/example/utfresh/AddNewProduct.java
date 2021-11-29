@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class AddNewProduct extends AppCompatActivity {
 
@@ -15,15 +16,21 @@ public class AddNewProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
-
-        EditText inout_name = findViewById(R.id.input_name);
-        EditText inout_price = findViewById(R.id.input_price);
-        EditText inout_category = findViewById(R.id.input_category);
-        ImageButton input_image = findViewById(R.id.input_image);
+        final EditText input_name = findViewById(R.id.input_name);
+        final EditText input_price = findViewById(R.id.input_price);
+        final EditText input_category = findViewById(R.id.input_category);
         Button save_button = findViewById(R.id.save_button);
-        save_button.setOnClickListener(v->
-        {
+        DAOData dao = new DAOData();
+        save_button.setOnClickListener(v-> {
+                    Data data = new Data(input_name.getText().toString(), input_price.getText().toString(), input_category.getText().toString());
+                    dao.add(data).addOnSuccessListener(suc ->
+                    {
+                        Toast.makeText(this, "Record is inserted", Toast.LENGTH_SHORT).show();
 
+                    }).addOnFailureListener(er ->
+                    {
+                        Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
         });
 
 
