@@ -22,4 +22,11 @@
     <string name="pending">Pending</string>
     <string name="complete">Complete</string>
     <string name="email">Enter email</string>
+    <string-array name="sample_store_names">
+        <item>Wall Mart</item>
+        <item>Waste-On-Foods</item>
+        <item>Fake American Inferstore</item>
+        <item>Sobeys</item>
+        <item>Sellers</item>
+    </string-array>
 </resources>

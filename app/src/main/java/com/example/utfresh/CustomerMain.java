@@ -2,6 +2,8 @@ package com.example.utfresh;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,26 +16,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class CustomerMain extends AppCompatActivity {
+    RecyclerView list;
+    String[] storeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
-    }
 
-    //Load store from firebase one by one
-    protected void loadStore(){
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores");
-        ref.child("s1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("demo", "Error getting data", task.getException());
+        list = findViewById(R.id.storeList);
+        StoreListAdapter storeAdapter = new StoreListAdapter(this, storeName);
+        list.setAdapter(storeAdapter);
+        list.setLayoutManager(new LinearLayoutManager(this));
+        /*
+        //Load store from firebase one by one
+        protected void loadStore(){
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores");
+            ref.child("s1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("demo", "Error getting data", task.getException());
+                    } else {
+                        //load stores one by one.
+                    }
                 }
-                else {
-                    //load stores one by one.
-                }
-            }
-        });
+            });
+        }*/
     }
 }
