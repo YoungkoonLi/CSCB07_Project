@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,14 +55,14 @@ public class CustomerSignUp extends AppCompatActivity{
 
     public void Customer_SignUp(View view){
         String email = editEmail.getText().toString().trim();
-        String user = username.getText().toString().trim();
+        String name = username.getText().toString().trim();
         String pass = password.getText().toString().trim();
         String phone = phoneNum.getText().toString().trim();
         if(TextUtils.isEmpty(email)){
             editEmail.setError("email is required.");
             return;
         }
-        if(TextUtils.isEmpty(user)){
+        if(TextUtils.isEmpty(name)){
             username.setError("username is required.");
             return;
         }
@@ -85,8 +86,22 @@ public class CustomerSignUp extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(CustomerSignUp.this, "User Created", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            User user = new User(email,name);
+
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(auth.getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(CustomerSignUp.this, "User created!", Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                    }
+                                    else{
+                                        Toast.makeText(CustomerSignUp.this, "Error!" + task.getException(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                         }else{
                             Toast.makeText(CustomerSignUp.this, "Error!" + task.getException(), Toast.LENGTH_LONG).show();
                         }

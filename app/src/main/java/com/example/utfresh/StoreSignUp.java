@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class StoreSignUp extends AppCompatActivity {
     Button signup;
@@ -52,7 +53,7 @@ public class StoreSignUp extends AppCompatActivity {
 
     public void displayUserStore(View view){
         String email = editEmail.getText().toString().trim();
-        String user = editUsername.getText().toString().trim();
+        String name = editUsername.getText().toString().trim();
         String pass = editPassword.getText().toString().trim();
         String address = editAddress.getText().toString().trim();
         String phone = editPhone.getText().toString().trim();
@@ -60,7 +61,7 @@ public class StoreSignUp extends AppCompatActivity {
             editEmail.setError("email is required.");
             return;
         }
-        if(TextUtils.isEmpty(user)){
+        if(TextUtils.isEmpty(name)){
             editUsername.setError("username is required.");
             return;
         }
@@ -87,8 +88,22 @@ public class StoreSignUp extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(StoreSignUp.this, "User Created", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    User user = new User(email,name);
+
+                    FirebaseDatabase.getInstance().getReference("Users")
+                            .child(auth.getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(StoreSignUp.this, "User created!", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            }
+                            else{
+                                Toast.makeText(StoreSignUp.this, "Error!" + task.getException(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }else{
                     Toast.makeText(StoreSignUp.this, "Error!" + task.getException(), Toast.LENGTH_LONG).show();
                 }
