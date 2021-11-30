@@ -15,6 +15,7 @@ public class StoreOwnerHome extends AppCompatActivity {
         setContentView(R.layout.activity_store_owner_home);
 
         //Function of product_list button
+
         Button product_list = findViewById(R.id.product_list);
         product_list.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -56,6 +57,7 @@ public class StoreOwnerHome extends AppCompatActivity {
         Intent intent = new Intent(this, ProductList.class);
         startActivity(intent);
     }
+
 
     public void openActivityAddNewProduct(){
         Intent intent = new Intent(this, AddNewProduct.class );
