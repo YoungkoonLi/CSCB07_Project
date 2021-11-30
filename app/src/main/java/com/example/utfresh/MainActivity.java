@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup radiogroup;
     Button signupForStore;
     Button signupForCustomer;
+    Button cusButton, storeButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         store=findViewById(R.id.radioStoreOwner);
         cus=findViewById(R.id.radioCustomer);
         radiogroup=findViewById(R.id.radioGroup);
+        cusButton=findViewById(R.id.buttonForCus);
+        storeButton=findViewById(R.id.buttonForStore);
         //radioGroup
         radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -50,6 +54,18 @@ public class MainActivity extends AppCompatActivity {
                 displayUser3();
             }
         });
+        cusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayUser4();
+            }
+        });
+        storeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayUser5();
+            }
+        });
     }
 
 //    public void displayUser(View view){
@@ -72,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayUser3(){
         Intent intent = new Intent(MainActivity.this, CustomerSignUp.class);
+        startActivity(intent);
+    }
+    public void displayUser4(){
+        Intent intent = new Intent(this, CustomerMain.class);
+        startActivity(intent);
+    }
+    public void displayUser5(){
+        Intent intent = new Intent(this, StoreOwnerHome.class);
         startActivity(intent);
     }
 }
