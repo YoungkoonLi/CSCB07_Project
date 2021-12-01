@@ -21,6 +21,7 @@
     <string name="ready_for_pick_up">Ready For Pick Up</string>
     <string name="pending">Pending</string>
     <string name="complete">Complete</string>
+    <string name="order_status">Order Status</string>
     <string name="email">Enter email</string>
     <string-array name="sample_store_names">
         <item>Wall Mart</item>

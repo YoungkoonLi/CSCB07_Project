@@ -109,6 +109,10 @@ public class CustomerSignUp extends AppCompatActivity{
                 });
     }
 
+    public void setLogin(View view) {
+        startActivity(new Intent(CustomerSignUp.this,MainActivity.class));
+    }
+
 //    @Override
 //    public void onClick(View v) {
 //        switch(v.getId()){
