@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CustomerMain extends AppCompatActivity {
     RecyclerView list; // The recyclerView
-    String[] storeName; // list of store names
+    String[] storeNames; // list of store names
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,8 @@ public class CustomerMain extends AppCompatActivity {
 
         list = findViewById(R.id.storeList);
         //set up viewAdapter
-        StoreListAdapter storeAdapter = new StoreListAdapter(this, storeName);
+        storeNames = getResources().getStringArray(R.array.sample_store_names);
+        StoreListAdapter storeAdapter = new StoreListAdapter(this, storeNames);
         list.setAdapter(storeAdapter);
         //Set to linear layout
         list.setLayoutManager(new LinearLayoutManager(this));
