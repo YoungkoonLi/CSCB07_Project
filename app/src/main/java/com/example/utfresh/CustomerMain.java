@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,6 +31,9 @@ public class CustomerMain extends AppCompatActivity {
         list.setAdapter(storeAdapter);
         //Set to linear layout
         list.setLayoutManager(new LinearLayoutManager(this));
+
+        //messages to be shown after this page is created.
+        Toast.makeText(getApplicationContext(), "Set up complete!", Toast.LENGTH_LONG).show();
         /*
         //Load store from firebase one by one
         protected void loadStore(){

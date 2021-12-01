@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Temporary button for testing customer page.
     public void display1(View view){
         startActivity(new Intent(MainActivity.this, CustomerMain.class));
         //Testing text
