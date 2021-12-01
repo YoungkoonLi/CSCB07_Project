@@ -8,6 +8,10 @@ import com.google.firebase.database.Query;
 import java.util.HashMap;
 
 public class DAOData {
+
+    // this class is to use the firebase database: use the add method to insert product into the firebase
+
+
     private DatabaseReference databaseReference;
     public DAOData(){
         FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -20,13 +24,13 @@ public class DAOData {
         return databaseReference.push().setValue(data);
     }
 
-    public Task<Void> update(String key, HashMap<String, Object> hashMap){
-        return databaseReference.child(key).updateChildren(hashMap);
-    }
-
-    public Task<Void> remove(String key){
-        return databaseReference.child(key).removeValue();
-    }
+//    public Task<Void> update(String key, HashMap<String, Object> hashMap){
+//        return databaseReference.child(key).updateChildren(hashMap);
+//    }
+//
+//    public Task<Void> remove(String key){
+//        return databaseReference.child(key).removeValue();
+//    }
 
     public Query get(){
         return databaseReference.orderByKey();
