@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void display1(View view){
         startActivity(new Intent(MainActivity.this, CustomerMain.class));
+        //Testing text
+        Toast.makeText(getApplicationContext(), "started activity.", Toast.LENGTH_LONG).show();
     }
 
     public void Remember(){
@@ -178,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Logged successfully!", Toast.LENGTH_LONG).show();
 //                        startActivity(new Intent(MainActivity.this, StoreOwnerHome.class));
                         startActivity(new Intent(MainActivity.this, CustomerMain.class));
+
                     }
                 }else{
                     Toast.makeText(getApplicationContext(), "Error! " + task.getException(), Toast.LENGTH_LONG).show();
