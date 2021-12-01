@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    Button c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +55,19 @@ public class MainActivity extends AppCompatActivity {
         CusSignUp = findViewById(R.id.signupForCustomer);
         StoreSignUp = findViewById(R.id.signupForStore);
         remember = findViewById(R.id.checkBox);
+        c = findViewById(R.id.button5);
 
-        preferences = getSharedPreferences("bo7", Context.MODE_PRIVATE);
+        preferences = getSharedPreferences("b07", Context.MODE_PRIVATE);
         editor = preferences.edit();
         fAuth = FirebaseAuth.getInstance();
         Remember();
+
+        c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                display1(v);
+            }
+        });
 
         //initial button for CusSignUp
         CusSignUp.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
                 setLogin(v);
             }
         });
+    }
+
+    public void display1(View view){
+        startActivity(new Intent(MainActivity.this, CustomerMain.class));
     }
 
     public void Remember(){
@@ -141,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
         if(pass.length() < 6){
             editPassword.setError("Password should have at least 6 characters!");
         }
-        //
 
         boolean isStore = store.isChecked();
         boolean isCus = customer.isChecked();
@@ -158,13 +170,14 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.makeText(getApplicationContext(), "Logged successfully!", Toast.LENGTH_LONG).show();
 //                    startActivity(new Intent(MainActivity.this, StoreHome.class));
 
-                    if(isCus){
+                    if(isStore){
                         Toast.makeText(getApplicationContext(), "Logged successfully!", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(MainActivity.this, CustomerMain.class);
-                        startActivity(intent);
+//                        startActivity(new Intent(MainActivity.this, CustomerMain.class));
+                        startActivity(new Intent(MainActivity.this, StoreOwnerHome.class));
                     }else{
                         Toast.makeText(getApplicationContext(), "Logged successfully!", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(MainActivity.this, StoreOwnerHome.class));
+//                        startActivity(new Intent(MainActivity.this, StoreOwnerHome.class));
+                        startActivity(new Intent(MainActivity.this, CustomerMain.class));
                     }
                 }else{
                     Toast.makeText(getApplicationContext(), "Error! " + task.getException(), Toast.LENGTH_LONG).show();
