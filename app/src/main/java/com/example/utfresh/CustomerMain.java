@@ -34,6 +34,7 @@ public class CustomerMain extends AppCompatActivity {
 
         //messages to be shown after this page is created.
         Toast.makeText(getApplicationContext(), "Set up complete!", Toast.LENGTH_LONG).show();
+    }
         /*
         //Load store from firebase one by one
         protected void loadStore(){
@@ -49,5 +50,4 @@ public class CustomerMain extends AppCompatActivity {
                 }
             });
         }*/
-    }
 }
