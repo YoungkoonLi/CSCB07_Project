@@ -4,113 +4,116 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background_black"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textview"
-        android:layout_width="168dp"
-        android:layout_height="77dp"
-        android:layout_marginTop="24dp"
-        android:text="Sign In"
-        android:textColor="@color/black"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="103dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="107dp"
+        android:text="SignIn"
+        android:textColor="@color/white"
+        android:textSize="36dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/editEmail"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/ic_user"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/username"
-        app:layout_constraintTop_toBottomOf="@+id/textview" />
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.468" />
 
     <EditText
         android:id="@+id/editPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_password"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPersonName"
-        android:drawableLeft="@drawable/ic_password"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/editEmail"
-        app:layout_constraintVertical_bias="0.004" />
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378" />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="60dp"
         android:text="Email"
+        android:textColor="@color/text_color"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.381" />
 
     <TextView
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="44dp"
         android:text="Password"
+        android:textColor="@color/text_color"
         android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.467" />
 
     <Button
         android:id="@+id/signupForStore"
         android:layout_width="145dp"
         android:layout_height="60dp"
-        android:layout_margin="24dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginBottom="44dp"
         android:backgroundTint="@color/background_button_color"
         android:onClick="StoreSignUp"
         android:text="Sign Up As Store"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="345dp"
-        android:layout_height="123dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="268dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/radioStoreOwner"
-            android:layout_width="wrap_content"
+            android:layout_width="159dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
             android:text="Store Owner"
-            android:textSize="20dp"
+            android:textColor="@color/text_color"
+            android:textSize="16dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/radioCustomer"
             app:layout_constraintEnd_toStartOf="@+id/radioCustomer"
             app:layout_constraintHorizontal_bias="0.935"
@@ -118,68 +121,113 @@
 
         <RadioButton
             android:id="@+id/radioCustomer"
-            android:layout_width="wrap_content"
+            android:layout_width="148dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
             android:text="Customer"
-            android:textSize="20dp"
+            android:textColor="@color/text_color"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+
     </RadioGroup>
 
     <Button
         android:id="@+id/login"
         android:layout_width="363dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="200dp"
         android:backgroundTint="@color/background_button_color"
         android:onClick="setLogin"
         android:text="Login"
+        android:textSize="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupForCustomer"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/signupForCustomer"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/background_button_color"
-        android:onClick="CustomerSignUp"
-        android:text="Sign Up as Customer"
-        app:layout_constraintBaseline_toBaselineOf="@+id/signupForStore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.863"
-        app:layout_constraintStart_toEndOf="@+id/signupForStore" />
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox"
-        android:layout_width="111dp"
+        android:layout_width="150dp"
         android:layout_height="41dp"
+        android:layout_marginTop="4dp"
         android:hint="@string/remember"
         android:text="Remember Me"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/text_color"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:onClick="display1"
         android:text="customer"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="761dp" />
+
+    <Button
+        android:id="@+id/signupForCustomer"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="44dp"
+        android:backgroundTint="@color/background_button_color"
+        android:onClick="CustomerSignUp"
+        android:text="Sign Up as Customer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="105dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.082"
+        app:srcCompat="@drawable/ic_signin_user" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:text="Or"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="146dp"
+        android:layout_height="5dp"
+        android:layout_marginBottom="136dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/line2" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="146dp"
+        android:layout_height="5dp"
+        android:layout_marginBottom="136dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:srcCompat="@drawable/line2" />
+
 
     <!--    <RadioButton-->
     <!--        android:id="@+id/radioStoreOwner"-->
