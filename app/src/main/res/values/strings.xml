@@ -29,4 +29,5 @@
         <item>Sobeys</item>
         <item>Sellers</item>
     </string-array>
+    <string name="remember">Remember Me</string>
 </resources>

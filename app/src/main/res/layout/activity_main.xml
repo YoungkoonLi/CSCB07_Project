@@ -20,17 +20,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editUsername"
+        android:id="@+id/editEmail"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/username"
         android:drawableLeft="@drawable/ic_user"
+        android:ems="10"
+        android:hint="@string/email"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/username"
         app:layout_constraintTop_toBottomOf="@+id/textview" />
 
@@ -48,16 +48,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/editUsername"
+        app:layout_constraintTop_toBottomOf="@+id/editEmail"
         app:layout_constraintVertical_bias="0.004" />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="60dp"
-        android:text="Username"
+        android:text="Email"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,9 +82,9 @@
         android:layout_margin="24dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="184dp"
-        android:onClick="displayUser2"
-        android:text="Sign Up As Store"
         android:backgroundTint="@color/background_button_color"
+        android:onClick="StoreSignUp"
+        android:text="Sign Up As Store"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
@@ -130,15 +130,15 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="363dp"
+        android:layout_height="50dp"
         android:layout_marginTop="28dp"
-        android:onClick="displayUser"
-        android:text="Login"
         android:backgroundTint="@color/background_button_color"
+        android:onClick="setLogin"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupForCustomer"
         app:layout_constraintVertical_bias="0.0" />
@@ -148,39 +148,26 @@
         android:layout_width="145dp"
         android:layout_height="60dp"
         android:layout_marginEnd="24dp"
-        android:onClick="displayUser3"
-        android:text="Sign Up as Customer"
         android:backgroundTint="@color/background_button_color"
+        android:onClick="CustomerSignUp"
+        android:text="Sign Up as Customer"
         app:layout_constraintBaseline_toBaselineOf="@+id/signupForStore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toEndOf="@+id/signupForStore" />
 
-    <Button
-        android:id="@+id/buttonForStore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="store"
-        android:backgroundTint="@color/background_button_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupForStore" />
-
-    <Button
-        android:id="@+id/buttonForCus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="customer"
-        android:backgroundTint="@color/background_button_color"
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="111dp"
+        android:layout_height="41dp"
+        android:hint="@string/remember"
+        android:text="Remember Me"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonForStore"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:layout_constraintVertical_bias="0.238" />
 
     <!--    <RadioButton-->
     <!--        android:id="@+id/radioStoreOwner"-->

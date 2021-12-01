@@ -3,9 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/B07 Project/app/src/main/res/drawable-anydpi/ic_user.xml" value="0.24010416666666667" />
         <entry key="..\:/B07 Project/app/src/main/res/layout/activity_customer_main.xml" value="0.22395833333333334" />
-        <entry key="..\:/B07 Project/app/src/main/res/layout/store_list_row.xml" value="0.16" />
         <entry key="..\:/Giselle/university/CSCB07/b07 Project/app/src/main/res/layout/activity_add_new_product.xml" value="0.5" />
         <entry key="..\:/Giselle/university/CSCB07/b07 Project/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Giselle/university/CSCB07/b07 Project/app/src/main/res/layout/activity_product_list.xml" value="0.12685185185185185" />
@@ -22,7 +20,7 @@
         <entry key="..\:/Users/Intel/AndroidStudioProjects/CSCB07_Project/app/src/main/res/layout/activity_store_owner_home.xml" value="0.10914855072463768" />
         <entry key="..\:/Users/Intel/AndroidStudioProjects/CSCB07_Project/app/src/main/res/layout/activity_store_sign_up.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_customer_sign_up.xml" value="0.31637779238484515" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.42714610119848173" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_store_sign_up.xml" value="0.19379550337837703" />
       </map>
     </option>
