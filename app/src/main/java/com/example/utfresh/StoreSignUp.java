@@ -110,4 +110,8 @@ public class StoreSignUp extends AppCompatActivity {
             }
         });
     }
+
+    public void setLogin(View view) {
+        startActivity(new Intent(StoreSignUp.this, MainActivity.class));
+    }
 }
