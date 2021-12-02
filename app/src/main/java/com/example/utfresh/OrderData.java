@@ -18,17 +18,25 @@ public class OrderData {
         this.Quantity = Quantity;
     }
 
+    public void SetProduct_Name(String Product_Name) {this.Product_Name = Product_Name; }
+
     public String getProduct_name() {
         return Product_Name;
     }
+
+    public void SetPrice(String Price) {this.Price = Price; }
 
     public String getPrice() {
         return Price;
     }
 
+    public void SetCategory(String Category) {this.Category = Category; }
+
     public String getCategory() {
         return Category;
     }
+
+    public void SetQuantity(String Quantity) {this.Quantity = Quantity; }
 
     public String getQuantity() {
         return Quantity;
