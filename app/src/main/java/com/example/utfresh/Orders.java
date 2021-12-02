@@ -53,7 +53,10 @@ public class Orders extends AppCompatActivity {
         listener = new OrderAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
+                Order order;
+                order = new Order();
                 Intent intent = new Intent(getApplicationContext(), ViewOrderDetail.class);
+                intent.putExtra("Item_List", order.getItem_List());
                 startActivity(intent);
             }
         };

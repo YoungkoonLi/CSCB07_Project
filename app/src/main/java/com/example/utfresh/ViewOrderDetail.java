@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,19 +19,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ViewOrderDetail extends AppCompatActivity {
+public class ViewOrderDetail extends AppCompatActivity implements Serializable {
 
     TextView username;
     Spinner spinner_order_status;
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
-    DatabaseReference databaseReference;
-    DatabaseReference store;
-    FirebaseUser user;
-    String uid;
+//    DatabaseReference databaseReference;
+//    DatabaseReference store;
+//    FirebaseUser user;
+//    String uid;
     OrderDetailAdapter adapter;
+    ArrayList<OrderData> data_set;
 
 
     @Override
@@ -38,10 +41,10 @@ public class ViewOrderDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_order_detail);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Order");
-        uid = user.getUid();
-        store = databaseReference.child(uid);
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//        databaseReference = FirebaseDatabase.getInstance().getReference("Order");
+//        uid = user.getUid();
+//        store = databaseReference.child(uid);
 
         username = (TextView) findViewById(R.id.username);
         spinner_order_status = (Spinner) findViewById(R.id.spinner_order_status);
@@ -51,31 +54,46 @@ public class ViewOrderDetail extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         adapter = new OrderDetailAdapter(this);
         recyclerView.setAdapter(adapter);
-        loadData();
+
+        Bundle extras = getIntent().getExtras();
+        ArrayList<OrderData> data_set = new ArrayList<>();
+
+
+        if(extras != null){
+            data_set = (ArrayList<OrderData>) getIntent().getSerializableExtra("Item_List");
+
+
+        }
+
+        adapter.setItems(data_set);
+
+
+
+//        loadData();
 
 
 
     }
 
-    private void loadData() {
-        store.child("Item_List").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<OrderData> data_set = new ArrayList<>();
-                for(DataSnapshot value : snapshot.getChildren()){
-                    OrderData data = value.getValue(OrderData.class);
-                    data_set.add(data);
-                }
-                adapter.setItems(data_set);
-                adapter.notifyDataSetChanged();
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
+//    private void loadData() {
+//        store.child("Item_List").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                ArrayList<OrderData> data_set = new ArrayList<>();
+//                for(DataSnapshot value : snapshot.getChildren()){
+//                    OrderData data = value.getValue(OrderData.class);
+//                    data_set.add(data);
+//                }
+//                adapter.setItems(data_set);
+//                adapter.notifyDataSetChanged();
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 }
