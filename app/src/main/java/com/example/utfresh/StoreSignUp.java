@@ -88,7 +88,7 @@ public class StoreSignUp extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(email,name);
+                    User user = new User(email,name, "store");
 
                     FirebaseDatabase.getInstance().getReference("Users")
                             .child(auth.getCurrentUser().getUid())

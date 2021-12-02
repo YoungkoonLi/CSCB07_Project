@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent">>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/item_list"
+            android:id="@+id/Item_List"
             android:layout_width="372dp"
             android:layout_height="366dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
