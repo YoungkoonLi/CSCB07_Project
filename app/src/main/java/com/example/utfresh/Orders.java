@@ -36,7 +36,7 @@ public class Orders extends AppCompatActivity {
         setContentView(R.layout.activity_orders);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Orders");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         uid = user.getUid();
 
         swipeRefreshLayout = findViewById(R.id.swip);
@@ -67,12 +67,13 @@ public class Orders extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Order> data_set = new ArrayList<>();
-                for(DataSnapshot value : snapshot.getChildren()){
+                for (DataSnapshot value : snapshot.getChildren()) {
                     Order data = value.getValue(Order.class);
                     data_set.add(data);
                 }
                 adapter.setItems(data_set);
                 adapter.notifyDataSetChanged();
+
 
             }
 

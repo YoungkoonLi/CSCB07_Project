@@ -8,6 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -35,6 +36,12 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
     OrderDetailAdapter adapter;
     ArrayList<OrderData> data_set;
 
+    String[] spinner_source = new String[]{
+            "Pending",
+            "Ready for Pick Up",
+            "Complete"
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,12 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
 
         username = (TextView) findViewById(R.id.username);
         spinner_order_status = (Spinner) findViewById(R.id.spinner_order_status);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,
+                spinner_source);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_order_status.setAdapter(spinnerArrayAdapter);
+
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swip);
         recyclerView = (RecyclerView) findViewById(R.id.Item_List);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
