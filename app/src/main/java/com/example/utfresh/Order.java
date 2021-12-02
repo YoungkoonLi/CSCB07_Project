@@ -1,5 +1,6 @@
 package com.example.utfresh;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Order {
@@ -9,7 +10,7 @@ public class Order {
     private String Order_Status;
     private String Customer_Name;
     private String Store_Name;
-    private ArrayList<OrderData> item_list; //list of item that customer orders,
+    private ArrayList<OrderData> Item_List; //list of item that customer orders,
     //include product name, price, quantity, category
 
 
@@ -17,11 +18,12 @@ public class Order {
 
     }
 
-    public Order(String Customer_Name, String Store_Name){
+    public Order(String Customer_Name, String Store_Name, ArrayList<OrderData> Item_List){
 
         this.Order_Status = "Pending";
         this.Customer_Name = Customer_Name;
         this.Store_Name = Store_Name;
+        this.Item_List = Item_List;
     }
 
     public String getOrder_Status() {
@@ -36,7 +38,7 @@ public class Order {
         return Store_Name;
     }
 
-    public ArrayList<OrderData> getItem_list() {
-        return item_list;
+    public ArrayList<OrderData> getItem_List() {
+        return Item_List;
     }
 }

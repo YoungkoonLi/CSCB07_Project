@@ -25,7 +25,7 @@ public class ViewOrderDetail extends AppCompatActivity {
         username = (TextView) findViewById(R.id.username);
         spinner_order_status = (Spinner) findViewById(R.id.spinner_order_status);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swip);
-        recyclerView = (RecyclerView) findViewById(R.id.item_list);
+        recyclerView = (RecyclerView) findViewById(R.id.Item_List);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
