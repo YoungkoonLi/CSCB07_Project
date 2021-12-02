@@ -28,6 +28,7 @@ public class Orders extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseUser user;
     String uid;
+    ArrayList<Order> order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class Orders extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         uid = user.getUid();
 
+
         swipeRefreshLayout = findViewById(R.id.swip);
         recyclerView = findViewById(R.id.order_list);
         recyclerView.setHasFixedSize(true);
@@ -49,24 +51,12 @@ public class Orders extends AppCompatActivity {
         loadData();
     }
 
-    private void setOnClickListner() {
-        listener = new OrderAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Order order;
-                order = new Order();
-                Intent intent = new Intent(getApplicationContext(), ViewOrderDetail.class);
-                intent.putExtra("Item_List", order.getItem_List());
-                startActivity(intent);
-            }
-        };
-    }
 
     private void loadData() {
         databaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Order> data_set = new ArrayList<>();
+                ArrayList<Order> data_set = new ArrayList<Order>();
                 for (DataSnapshot value : snapshot.getChildren()) {
                     Order data = value.getValue(Order.class);
                     data_set.add(data);
@@ -82,6 +72,18 @@ public class Orders extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setOnClickListner() {
+        listener = new OrderAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                order = new ArrayList<Order>();
+                Intent intent = new Intent(getApplicationContext(), ViewOrderDetail.class);
+                intent.putExtra("Item_List", order.get(position).getItem_List());
+                startActivity(intent);
+            }
+        };
     }
 
 }
