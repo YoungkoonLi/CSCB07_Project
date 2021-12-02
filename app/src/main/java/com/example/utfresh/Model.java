@@ -2,6 +2,8 @@ package com.example.utfresh;
 
 import androidx.annotation.NonNull;
 
+import com.example.utfresh.Contract;
+import com.example.utfresh.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -14,7 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.function.Consumer;
 
-public class Model{
+public class Model implements Contract.Model{
     static Model instance;
     DatabaseReference users;
     FirebaseAuth fAuth;

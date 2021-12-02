@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements Contract.View{
 
     EditText editEmail,editPassword;
     RadioGroup radioGroup;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity{
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setLogin(v);
+                setLogin();
             }
         });
     }
@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity{
     public void StoreSignUp(View view){
         startActivity(new Intent(MainActivity.this, StoreSignUp.class));
     }
-    public void setLogin(View view){
+
+    @Override
+    public void setLogin() {
         //initial input string
 //        startActivity(new Intent(MainActivity.this, StoreHome.class));
 
@@ -167,40 +169,7 @@ public class MainActivity extends AppCompatActivity{
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
-        presenter.signIn(email, pass, isCus, isStore);
-
-//        fAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if(task.isSuccessful()){
-////                    Toast.makeText(getApplicationContext(), "Logged successfully!", Toast.LENGTH_LONG).show();
-////                    startActivity(new Intent(MainActivity.this, StoreHome.class));
-//                    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                    FirebaseDatabase.getInstance().getReference("Users").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            User user = snapshot.getValue(User.class);
-//                            if (isCus && user.type.equals(cus)) {
-//                                Toast.makeText(getApplicationContext(), "customer logged successfully!", Toast.LENGTH_LONG).show();
-//                                Intent intent = new Intent(MainActivity.this, CustomerHome.class);
-//                                startActivity(intent);
-//                            } else if (isStore && user.type.equals(s)) {
-//                                Toast.makeText(getApplicationContext(), "store logged successfully!", Toast.LENGTH_LONG).show();
-//                                startActivity(new Intent(MainActivity.this, StoreHome.class));
-//                            } else {
-//                                Toast.makeText(getApplicationContext(), "Please select correct user type!", Toast.LENGTH_LONG).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//                        }
-//                    });
-//                }else{
-//                    Toast.makeText(getApplicationContext(), "Error! " + task.getException(), Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
+        presenter.SignIn(email, pass, isCus, isStore);
     }
     public void toCustomer(){
         Toast.makeText(getApplicationContext(), "customer logged successfully!", Toast.LENGTH_LONG).show();
