@@ -49,6 +49,14 @@ public class ProductList extends AppCompatActivity {
 
         loadData();
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //the logic of receiving data
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         Button home = findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener(){
