@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Setting"
-    android:background="@drawable/background_black">
+    android:background="@drawable/background_black"
+    tools:context=".Setting">
 
     <TextView
         android:id="@+id/textView9"
@@ -13,7 +13,150 @@
         android:layout_height="wrap_content"
         android:text="Setting"
         android:textColor="@color/white"
-        android:textSize="36dp"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="74dp" />
+        android:textSize="38dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="582dp"
+        android:layout_height="770dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="88dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rice_white" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Information"
+        android:textColor="@color/text_color"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView8"
+        android:layout_width="372dp"
+        android:layout_height="453dp"
+        android:background="@drawable/shadow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.351"
+        app:shapeAppearanceOverlay="@style/RoundSquare"
+        app:srcCompat="@drawable/white_rectangal" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView10"
+        android:layout_width="358dp"
+        android:layout_height="71dp"
+        android:background="@drawable/shadow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.959"
+        app:shapeAppearanceOverlay="@style/RoundSquare"
+        app:srcCompat="@drawable/small_rectangal" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="335dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="9dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_shutdown"
+        android:gravity="left|center_vertical"
+        android:text="Deactivate"
+        android:textColor="#F81B0B"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toTopOf="@+id/imageView10"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="335dp"
+        android:layout_height="62dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_user"
+        android:drawableRight="@drawable/ic_go"
+        android:gravity="left|center_vertical"
+        android:text="User name"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.273" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="335dp"
+        android:layout_height="62dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_phone"
+        android:drawableRight="@drawable/ic_go"
+        android:gravity="left|center_vertical"
+        android:text="Phone number"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="335dp"
+        android:layout_height="62dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawableRight="@drawable/ic_go"
+        android:gravity="left|center_vertical"
+        android:text="Email"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="@+id/button6"
+        app:layout_constraintStart_toStartOf="@+id/button6"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="335dp"
+        android:layout_height="62dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_user"
+        android:drawableRight="@drawable/ic_go"
+        android:gravity="left|center_vertical"
+        android:text="Password"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="@+id/button7"
+        app:layout_constraintStart_toStartOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login and Security"
+        android:textSize="22dp"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="150dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
