@@ -11,8 +11,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -21,12 +25,20 @@ public class ProductList extends AppCompatActivity {
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     MyAdapter adapter;
-    DAOData dao;
+    DatabaseReference databaseReference;
+    FirebaseUser user;
+    String uid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Data");
+        uid = user.getUid();
+
         swipeRefreshLayout = findViewById(R.id.swip);
         recyclerView = findViewById(R.id.product_list);
         recyclerView.setHasFixedSize(true);
@@ -34,7 +46,6 @@ public class ProductList extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
         adapter = new MyAdapter(this);
         recyclerView.setAdapter(adapter);
-        dao = new DAOData();
         loadData();
 
 //        Button home = findViewById(R.id.home);
@@ -59,8 +70,9 @@ public class ProductList extends AppCompatActivity {
 //        });
     }
 
+
     private void loadData() {
-        dao.get().addValueEventListener(new ValueEventListener() {
+        databaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Data> data_set = new ArrayList<>();
@@ -70,6 +82,7 @@ public class ProductList extends AppCompatActivity {
                 }
                 adapter.setItems(data_set);
                 adapter.notifyDataSetChanged();
+
 
             }
 
