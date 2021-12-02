@@ -8,6 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,7 +41,6 @@ public class Orders extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         uid = user.getUid();
 
-
         swipeRefreshLayout = findViewById(R.id.swip);
         recyclerView = findViewById(R.id.order_list);
         recyclerView.setHasFixedSize(true);
@@ -49,6 +49,15 @@ public class Orders extends AppCompatActivity {
         adapter = new OrderAdapter(this, listener);
         recyclerView.setAdapter(adapter);
         loadData();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //the logic of receiving data
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
 
