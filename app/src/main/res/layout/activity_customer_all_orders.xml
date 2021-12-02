@@ -55,25 +55,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.921" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swip"
-        android:layout_width="378dp"
-        android:layout_height="523dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.418">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/product_list"
-            android:layout_width="372dp"
-            android:layout_height="366dp"
-            tools:layout_editor_absoluteX="18dp"
-            tools:layout_editor_absoluteY="182dp" />
-
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
