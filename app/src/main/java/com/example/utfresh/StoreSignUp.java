@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,7 @@ public class StoreSignUp extends AppCompatActivity {
     Button signup;
     EditText editUsername, editEmail, editPassword,editAddress,editPhone;
     FirebaseAuth auth;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class StoreSignUp extends AppCompatActivity {
         editPassword = findViewById(R.id.editPassword);
         editEmail = findViewById(R.id.editEmail);
         editPhone = findViewById(R.id.editTextPhone);
+        progressBar = findViewById(R.id.progressBar3);
 
         auth = FirebaseAuth.getInstance();
 
@@ -82,6 +85,7 @@ public class StoreSignUp extends AppCompatActivity {
             editPassword.setError("password must be >= 6 characters");
             return;
         }
+        progressBar.setVisibility(View.VISIBLE);
 
         //register in firebase
         auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -101,11 +105,13 @@ public class StoreSignUp extends AppCompatActivity {
                             }
                             else{
                                 Toast.makeText(StoreSignUp.this, "Error!" + task.getException(), Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     });
                 }else{
                     Toast.makeText(StoreSignUp.this, "Error!" + task.getException(), Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

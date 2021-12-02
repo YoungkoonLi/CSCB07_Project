@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity{
     SharedPreferences.Editor editor;
     Presenter presenter;
     Model model;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity{
         CusSignUp = findViewById(R.id.signupForCustomer);
         StoreSignUp = findViewById(R.id.signupForStore);
         remember = findViewById(R.id.checkBox);
+        progressBar = findViewById(R.id.progressBar);
         model = new Model();
 
         preferences = getSharedPreferences("bo7", Context.MODE_PRIVATE);
@@ -164,7 +166,7 @@ public class MainActivity extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), "Please select login as Customer or StoreOwner!", Toast.LENGTH_LONG).show();
             return;
         }
-//
+        progressBar.setVisibility(View.VISIBLE);
         presenter.signIn(email, pass, isCus, isStore);
 
 //        fAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -210,8 +212,10 @@ public class MainActivity extends AppCompatActivity{
     }
     public void OnError(){
         Toast.makeText(getApplicationContext(), "Please select correct user type!", Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.GONE);
     }
     public void NotFound(){
         Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.GONE);
     }
 }

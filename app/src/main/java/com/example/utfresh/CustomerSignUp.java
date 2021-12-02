@@ -27,6 +27,7 @@ public class CustomerSignUp extends AppCompatActivity{
     Button signupCus;
     EditText editEmail,username, password, phoneNum;
     FirebaseAuth auth;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class CustomerSignUp extends AppCompatActivity{
         username = findViewById(R.id.editUsername);
         password = findViewById(R.id.editPassword);
         phoneNum = findViewById(R.id.editTextPhone);
+        progressBar = findViewById(R.id.progressBar2);
         auth = FirebaseAuth.getInstance();
 
 //        if(auth.getCurrentUser() != null){
@@ -79,6 +81,7 @@ public class CustomerSignUp extends AppCompatActivity{
             password.setError("password must be >= 6 characters");
             return;
         }
+        progressBar.setVisibility(View.VISIBLE);
 
         //register in firebase
         auth.createUserWithEmailAndPassword(email,pass)
@@ -99,11 +102,13 @@ public class CustomerSignUp extends AppCompatActivity{
                                     }
                                     else{
                                         Toast.makeText(CustomerSignUp.this, "Error!" + task.getException(), Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
                         }else{
                             Toast.makeText(CustomerSignUp.this, "Error!" + task.getException(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
