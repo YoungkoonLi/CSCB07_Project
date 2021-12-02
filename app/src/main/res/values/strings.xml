@@ -36,6 +36,7 @@
         <item>BurgerQueen</item>
         <item>Pizza Coldline</item>
         <item>DangerWay</item>
+        <item>IKEA</item>
     </string-array>
     <string name="remember">Remember Me</string>
 </resources>
