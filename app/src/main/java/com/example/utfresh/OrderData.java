@@ -1,6 +1,8 @@
 package com.example.utfresh;
 
-public class OrderData {
+import java.io.Serializable;
+
+public class OrderData implements Serializable {
 
     //this class is for the getter method in the DetailOrder_activity (after the owner click the
     //order in recyclerview to see the specific information about an order.

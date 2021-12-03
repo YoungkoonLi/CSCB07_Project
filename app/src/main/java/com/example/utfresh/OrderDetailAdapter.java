@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class OrderDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.OrderDetailViewHolder>{
     private Context context;
-    ArrayList<OrderData> list = new ArrayList<>();
+    private ArrayList<OrderData> list = new ArrayList<OrderData>();
 
     public OrderDetailAdapter(Context ctx){
         this.context = ctx;
@@ -42,19 +42,18 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OrderDetailAdapter.OrderDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_in_order, parent, false);
         return new OrderDetailViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        OrderDetailViewHolder viewholder = (OrderDetailViewHolder)holder;
+    public void onBindViewHolder(@NonNull OrderDetailAdapter.OrderDetailViewHolder holder, int position) {
         OrderData data = list.get(position);
-        viewholder.Product_Name.setText(data.getProduct_name());
-        viewholder.Price.setText(data.getPrice());
-        viewholder.Quantity.setText(data.getQuantity());
-        viewholder.Category.setText(data.getCategory());
+        holder.Product_Name.setText(data.getProduct_name());
+        holder.Price.setText(data.getPrice());
+        holder.Quantity.setText(data.getQuantity());
+        holder.Category.setText(data.getCategory());
 
 
     }

@@ -1,5 +1,6 @@
 package com.example.utfresh;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,11 @@ import java.util.ArrayList;
 
 // this class is the adapter and View Holder for the Order page
 
-public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder>{
     private Context context;
     ArrayList<Order> list = new ArrayList<>();
     private RecyclerViewClickListener listener;
+
 
     public OrderAdapter(Context ctx, RecyclerViewClickListener listener){
         this.listener = listener;
@@ -51,21 +53,20 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OrderAdapter.OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.order_layout, parent, false);
         return new OrderViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        OrderViewHolder viewholder = (OrderViewHolder)holder;
+    public void onBindViewHolder(@NonNull OrderAdapter.OrderViewHolder holder, int position) {
         Order data = list.get(position);
-        viewholder.Customer_Name.setText(data.getCustomer_Name());
-        viewholder.Order_Status.setText(data.getOrder_Status());
-        viewholder.Store_Name.setText(data.getStore_Name());
-
+        holder.Customer_Name.setText(data.getCustomer_Name());
+        holder.Order_Status.setText(data.getOrder_Status());
+        holder.Store_Name.setText(data.getStore_Name());
 
     }
+
 
     @Override
     public int getItemCount() {

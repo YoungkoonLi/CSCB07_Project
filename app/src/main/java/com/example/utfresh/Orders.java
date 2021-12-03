@@ -9,6 +9,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,20 +24,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Orders extends AppCompatActivity implements Serializable {
-    SwipeRefreshLayout swipeRefreshLayout;
-    RecyclerView recyclerView;
-    OrderAdapter adapter;
-    OrderAdapter.RecyclerViewClickListener listener;
-    DatabaseReference databaseReference;
-    FirebaseUser user;
-    String uid;
-    ArrayList<Order> order;
-    ArrayList<OrderData> Item_List;
+public class Orders extends AppCompatActivity implements Serializable{
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView recyclerView;
+    private OrderAdapter adapter;
+    private OrderAdapter.RecyclerViewClickListener listener;
+    private DatabaseReference databaseReference;
+    private FirebaseUser user;
+    private String uid;
+    private ArrayList<Order> OrderInfo;
+    private ArrayList<ArrayList<OrderData>> all_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setOnClickListner();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders);
 
@@ -45,14 +45,23 @@ public class Orders extends AppCompatActivity implements Serializable {
         uid = user.getUid();
 
 
+
         swipeRefreshLayout = findViewById(R.id.swip);
         recyclerView = findViewById(R.id.order_list);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(manager);
-        adapter = new OrderAdapter(this, listener);
-        recyclerView.setAdapter(adapter);
-        loadData();
+//        recyclerView.setHasFixedSize(true);
+//        LinearLayoutManager manager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(manager);
+//        adapter = new OrderAdapter(this, listener);
+
+//        recyclerView.setAdapter(adapter);
+
+        OrderInfo = new ArrayList<Order>();
+        all_list = new ArrayList<ArrayList<OrderData>>();
+
+        loadData(OrderInfo, all_list);
+
+        setAdapter();
+
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -65,19 +74,49 @@ public class Orders extends AppCompatActivity implements Serializable {
         });
     }
 
+    private void setAdapter() {
+        setOnClickListener();
+        adapter = new OrderAdapter(this, listener);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
 
-    private void loadData() {
+
+    }
+
+    private void setOnClickListener() {
+        listener = new OrderAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getApplicationContext(), ViewOrderDetail.class);
+                intent.putExtra("ItemList", (Serializable) all_list.get(position));
+                intent.putExtra("Customer_Name", OrderInfo.get(position).getCustomer_Name().toString());
+                startActivity(intent);
+            }
+        };
+    }
+
+
+    private void loadData(ArrayList<Order> OrderInfo, ArrayList<ArrayList<OrderData>> all_list) {
         databaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Order> data_set = new ArrayList<Order>();
+                for (DataSnapshot value1 : snapshot.getChildren()) {
+                    ArrayList<OrderData> Item_List = new ArrayList<>(); ;
+                    for(DataSnapshot value2 : value1.child("Item_List").getChildren()){
+                        OrderData item = value2.getValue(OrderData.class);
+                        Item_List.add(item);
+                    }
+                    all_list.add(Item_List);
+                }
+
                 for (DataSnapshot value : snapshot.getChildren()) {
                     Order data = value.child("OrderInfo").getValue(Order.class);
-                    data_set.add(data);
+                    OrderInfo.add(data);
                 }
-                adapter.setItems(data_set);
+                adapter.setItems(OrderInfo);
                 adapter.notifyDataSetChanged();
-
 
             }
 
@@ -89,19 +128,19 @@ public class Orders extends AppCompatActivity implements Serializable {
     }
 
 
-    private void setOnClickListner() {
-        listener = new OrderAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                order = new ArrayList<Order>();
-                Item_List = new ArrayList<OrderData>();
-                Intent intent = new Intent(getApplicationContext(), ViewOrderDetail.class);
-                intent.putExtra("Item_List", (Serializable) Item_List.get(position));
-                intent.putExtra("Customer_Name", order.get(position).getCustomer_Name().toString());
-                startActivity(intent);
-            }
-        };
-    }
+
+//    private void setOnClickListner() {
+//        listener = new OrderAdapter.RecyclerViewClickListener() {
+//            @Override
+//            public void onClick(View v, int position) {
+//                Intent intent = new Intent(getApplicationContext(), ViewOrderDetail.class);
+//                intent.putExtra("Item_List", (Serializable) Item_List.get(position));
+//                intent.putExtra("Customer_Name", OrderInfo.get(position).getCustomer_Name().toString());
+//                startActivity(intent);
+//            }
+//        };
+//    }
+
 
 
 }

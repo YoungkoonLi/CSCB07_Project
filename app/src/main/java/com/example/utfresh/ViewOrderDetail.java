@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ViewOrderDetail extends AppCompatActivity implements Serializable {
+public class ViewOrderDetail extends AppCompatActivity implements Serializable{
 
     TextView username;
     Spinner spinner_order_status;
@@ -36,7 +36,6 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
     FirebaseUser user;
     String uid;
     OrderDetailAdapter adapter;
-    ArrayList<OrderData> data_set;
 
     String[] spinner_source = new String[]{
             "Pending",
@@ -50,48 +49,59 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_order_detail);
 
+        adapter = new OrderDetailAdapter(this);
+
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         uid = user.getUid();
         store = databaseReference.child(uid);
 
+
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swip);
+        recyclerView = (RecyclerView) findViewById(R.id.Item_List);
+
         username = (TextView) findViewById(R.id.username);
         spinner_order_status = (Spinner) findViewById(R.id.spinner_order_status);
+
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item,
                 spinner_source);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_order_status.setAdapter(spinnerArrayAdapter);
 
-
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swip);
-        recyclerView = (RecyclerView) findViewById(R.id.Item_List);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-        adapter = new OrderDetailAdapter(this);
-        recyclerView.setAdapter(adapter);
-
-        Button update_button = findViewById(R.id.update_button);
-
-        update_button.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
+        swipeRefreshLayout = findViewById(R.id.swip);
+        recyclerView = findViewById(R.id.Item_List);
 
 
-            }
-        });
-
-
-
-        data_set = new ArrayList<OrderData>();
-
-        data_set = (ArrayList<OrderData>) getIntent().getSerializableExtra("Item_List");
+        ArrayList<OrderData> data_set = (ArrayList<OrderData>) getIntent().getSerializableExtra("ItemList");
         String customer_name = (String) getIntent().getStringExtra("Customer_Name");
 
-        username.setText(customer_name);
 
+        username.setText(customer_name);
         adapter.setItems(data_set);
+
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
+
+
+
+
+
+//        Button update_button = findViewById(R.id.update_button);
+//
+//        update_button.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//            }
+//        });
+
+
 
 
 
@@ -100,6 +110,13 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
 
 
     }
+
+
+
+
+
+
+
 
 //    private void loadData() {
 //        store.child("Item_List").addListenerForSingleValueEvent(new ValueEventListener() {
