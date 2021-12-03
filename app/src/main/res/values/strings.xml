@@ -40,6 +40,8 @@
     </string-array>
     <string name="remember">Remember Me</string>
     <string name="update_button">UPDATE</string>
+    <string name="shopping_cart">Shopping Cart</string>
+    <string name="Checkout">Checkout</string>
     <string-array name="status">
         <item>Read for Pick Up</item>
         <item>Pending</item>
