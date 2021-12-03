@@ -10,7 +10,7 @@ public class Order {
     private String Order_Status;
     private String Customer_Name;
     private String Store_Name;
-    private ArrayList<OrderData> Item_List; //list of item that customer orders,
+//    private ArrayList<OrderData> Item_List; //list of item that customer orders,
     //include product name, price, quantity, category
 
 
@@ -18,12 +18,12 @@ public class Order {
 
     }
 
-    public Order(String Customer_Name, String Store_Name, ArrayList<OrderData> Item_List){
+    public Order(String Customer_Name, String Store_Name){
         // the default Order_Status is Pending
         this.Order_Status = "Pending";
         this.Customer_Name = Customer_Name;
         this.Store_Name = Store_Name;
-        this.Item_List = Item_List;
+//        this.Item_List = Item_List;
     }
 
     public void SetOrderStatus(String Order_Status) {
@@ -56,9 +56,9 @@ public class Order {
         return Store_Name;
     }
 
-    public void SetItem_List(ArrayList<OrderData> Item_List) {this.Item_List = Item_List; }
-
-    public ArrayList<OrderData> getItem_List() {
-        return Item_List;
-    }
+//    public void SetItem_List(ArrayList<OrderData> Item_List) {this.Item_List = Item_List; }
+//
+//    public ArrayList<OrderData> getItem_List() {
+//        return Item_List;
+//    }
 }

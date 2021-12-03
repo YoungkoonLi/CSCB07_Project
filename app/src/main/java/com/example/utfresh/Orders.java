@@ -20,9 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Orders extends AppCompatActivity {
+public class Orders extends AppCompatActivity implements Serializable {
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     OrderAdapter adapter;
@@ -31,6 +32,7 @@ public class Orders extends AppCompatActivity {
     FirebaseUser user;
     String uid;
     ArrayList<Order> order;
+    ArrayList<OrderData> Item_List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class Orders extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         uid = user.getUid();
+
 
         swipeRefreshLayout = findViewById(R.id.swip);
         recyclerView = findViewById(R.id.order_list);
@@ -69,7 +72,7 @@ public class Orders extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Order> data_set = new ArrayList<Order>();
                 for (DataSnapshot value : snapshot.getChildren()) {
-                    Order data = value.getValue(Order.class);
+                    Order data = value.child("OrderInfo").getValue(Order.class);
                     data_set.add(data);
                 }
                 adapter.setItems(data_set);
@@ -85,17 +88,20 @@ public class Orders extends AppCompatActivity {
         });
     }
 
+
     private void setOnClickListner() {
         listener = new OrderAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
                 order = new ArrayList<Order>();
+                Item_List = new ArrayList<OrderData>();
                 Intent intent = new Intent(getApplicationContext(), ViewOrderDetail.class);
-                intent.putExtra("Item_List", order.get(position).getItem_List());
+                intent.putExtra("Item_List", (Serializable) Item_List.get(position));
                 intent.putExtra("Customer_Name", order.get(position).getCustomer_Name().toString());
                 startActivity(intent);
             }
         };
     }
+
 
 }
