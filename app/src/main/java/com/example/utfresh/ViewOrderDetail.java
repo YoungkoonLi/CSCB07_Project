@@ -84,13 +84,12 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
 
 
 
-        Bundle extras = getIntent().getExtras();
-        ArrayList<OrderData> data_set = new ArrayList<>();
+        data_set = new ArrayList<OrderData>();
 
+        data_set = (ArrayList<OrderData>) getIntent().getSerializableExtra("Item_List");
+        String customer_name = (String) getIntent().getStringExtra("Customer_Name");
 
-        if(extras != null){
-            data_set = (ArrayList<OrderData>) getIntent().getSerializableExtra("Item_List");
-        }
+        username.setText(customer_name);
 
         adapter.setItems(data_set);
 

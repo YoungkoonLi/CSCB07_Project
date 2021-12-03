@@ -92,6 +92,7 @@ public class Orders extends AppCompatActivity {
                 order = new ArrayList<Order>();
                 Intent intent = new Intent(getApplicationContext(), ViewOrderDetail.class);
                 intent.putExtra("Item_List", order.get(position).getItem_List());
+                intent.putExtra("Customer_Name", order.get(position).getCustomer_Name().toString());
                 startActivity(intent);
             }
         };
