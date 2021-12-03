@@ -8,7 +8,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,10 +31,10 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
     Spinner spinner_order_status;
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
-//    DatabaseReference databaseReference;
-//    DatabaseReference store;
-//    FirebaseUser user;
-//    String uid;
+    DatabaseReference databaseReference;
+    DatabaseReference store;
+    FirebaseUser user;
+    String uid;
     OrderDetailAdapter adapter;
     ArrayList<OrderData> data_set;
 
@@ -48,10 +50,10 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_order_detail);
 
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        databaseReference = FirebaseDatabase.getInstance().getReference("Order");
-//        uid = user.getUid();
-//        store = databaseReference.child(uid);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Order");
+        uid = user.getUid();
+        store = databaseReference.child(uid);
 
         username = (TextView) findViewById(R.id.username);
         spinner_order_status = (Spinner) findViewById(R.id.spinner_order_status);
@@ -61,6 +63,7 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_order_status.setAdapter(spinnerArrayAdapter);
 
+
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swip);
         recyclerView = (RecyclerView) findViewById(R.id.Item_List);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -68,14 +71,25 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable {
         adapter = new OrderDetailAdapter(this);
         recyclerView.setAdapter(adapter);
 
+        Button update_button = findViewById(R.id.update_button);
+
+        update_button.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+
+
         Bundle extras = getIntent().getExtras();
         ArrayList<OrderData> data_set = new ArrayList<>();
 
 
         if(extras != null){
             data_set = (ArrayList<OrderData>) getIntent().getSerializableExtra("Item_List");
-
-
         }
 
         adapter.setItems(data_set);

@@ -39,4 +39,10 @@
         <item>IKEA</item>
     </string-array>
     <string name="remember">Remember Me</string>
+    <string name="update_button">UPDATE</string>
+    <string-array name="status">
+        <item>Read for Pick Up</item>
+        <item>Pending</item>
+        <item>Complete</item>
+    </string-array>
 </resources>
