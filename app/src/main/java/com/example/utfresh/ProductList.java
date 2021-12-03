@@ -46,28 +46,46 @@ public class ProductList extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
         adapter = new MyAdapter(this);
         recyclerView.setAdapter(adapter);
+
         loadData();
 
-//        Button home = findViewById(R.id.home);
-//        home.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v) {
-//                openActivityStoreOwnerHome();
-//            }
-//        });
-//
-//        Button orders = findViewById(R.id.orders);
-//        orders.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v) {
-//                openActivityOrders();
-//            }
-//        });
-//
-//        Button setting = findViewById(R.id.setting);
-//        setting.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v) {
-//                openActivitySetting();
-//            }
-//        });
+
+        Button home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivityStoreOwnerHome();
+            }
+        });
+
+        Button orders = findViewById(R.id.orders);
+        orders.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivityOrders();
+            }
+        });
+
+        Button setting = findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivitySetting();
+            }
+        });
+
+    }
+
+    public void openActivityStoreOwnerHome(){
+        Intent intent = new Intent(this, StoreOwnerHome.class);
+        startActivity(intent);
+    }
+
+    public void openActivityOrders(){
+        Intent intent = new Intent(this, Orders.class);
+        startActivity(intent);
+    }
+
+    public void openActivitySetting(){
+        Intent intent = new Intent(this, Setting.class);
+        startActivity(intent);
     }
 
 
@@ -92,22 +110,5 @@ public class ProductList extends AppCompatActivity {
             }
         });
     }
-
-//    public void openActivityStoreOwnerHome(){
-//        Intent intent = new Intent(this, StoreOwnerHome.class);
-//        startActivity(intent);
-//    }
-//
-//
-//    public void openActivityOrders(){
-//        Intent intent = new Intent(this, Orders.class);
-//        startActivity(intent);
-//    }
-//
-//    public void openActivitySetting(){
-//        Intent intent = new Intent(this, Setting.class);
-//        startActivity(intent);
-//    }
-
 
 }
