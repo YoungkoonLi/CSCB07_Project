@@ -34,7 +34,7 @@ public class CustomerMain extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this));
 
         //messages to be shown after this page is created.
-        Toast.makeText(getApplicationContext(), "Set up complete!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "Set up complete!", Toast.LENGTH_LONG).show();
     }
         /*
         //Load store from firebase one by one
