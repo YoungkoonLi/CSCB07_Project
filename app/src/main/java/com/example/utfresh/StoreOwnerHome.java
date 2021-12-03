@@ -79,4 +79,12 @@ public class StoreOwnerHome extends AppCompatActivity {
         Intent intent = new Intent(this, Setting.class);
         startActivity(intent);
     }
+
+    public void All_orders_store(View view) {
+        startActivity(new Intent(StoreOwnerHome.this, Orders.class));
+    }
+
+    public void Setting(View view) {
+        startActivity(new Intent(StoreOwnerHome.this, Setting.class));
+    }
 }

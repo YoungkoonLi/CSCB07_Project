@@ -71,4 +71,17 @@ public class AddNewProduct extends AppCompatActivity {
         Intent intent = new Intent(this, Setting.class);
         startActivity(intent);
     }
+
+    public void Store_home(View view) {
+        startActivity(new Intent(AddNewProduct.this, StoreOwnerHome.class));
+    }
+
+
+    public void All_orders_store(View view) {
+        startActivity(new Intent(AddNewProduct.this, Orders.class));
+    }
+
+    public void Setting(View view) {
+        startActivity(new Intent(AddNewProduct.this, Setting.class));
+    }
 }

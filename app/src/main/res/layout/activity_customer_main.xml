@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerMain">
+    tools:context=".CustomerMain"
+    android:background="@drawable/background_black">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/storeList"
+        android:maxWidth="10mm"
+        android:maxHeight="10mm"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

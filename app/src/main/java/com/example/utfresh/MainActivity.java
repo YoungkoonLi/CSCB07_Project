@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
 
     }
 
+    public void Setting(View view) {
+        startActivity(new Intent(MainActivity.this, Setting.class));
+    }
+
     public void Remember(){
         boolean re = preferences.getBoolean("remember", false);
         String email = preferences.getString("email", "");
@@ -120,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
     public void StoreSignUp(View view){
         startActivity(new Intent(MainActivity.this, StoreSignUp.class));
     }
+
 
     @Override
     public void setLogin() {
@@ -189,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
         progressBar.setVisibility(View.GONE);
     }
 
-    public void setting(View view) {
-        startActivity(new Intent(MainActivity.this, Setting.class));
+    public void customer_main(View view) {
+        startActivity(new Intent(MainActivity.this, CustomerMain.class));
     }
 }

@@ -164,13 +164,16 @@
         app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="display1"
+        android:layout_marginTop="28dp"
+        android:onClick="customer_main"
         android:text="customer"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="761dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/signupForCustomer"
@@ -248,7 +251,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Setting"
-        android:onClick="setting"
+        android:onClick="Setting"
         tools:layout_editor_absoluteX="28dp"
         tools:layout_editor_absoluteY="23dp" />
 

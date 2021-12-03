@@ -8,62 +8,85 @@ import android.view.View;
 import android.widget.Button;
 
 public class Setting extends AppCompatActivity {
-    Button home, orders, logout, setting;
+
+//    Button Home, Orders, Logout, Setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        home = (Button) findViewById(R.id.home);
-        orders = (Button) findViewById(R.id.orders);
-        logout = (Button) findViewById(R.id.logout);
-        setting = (Button) findViewById(R.id.setting);
+ //       Home = findViewById(R.id.home);
+ //       Orders = findViewById(R.id.orders);
+   //     Logout = findViewById(R.id.logout);
+     //   Setting = findViewById(R.id.setting);
 
-        home.setOnClickListener(new View.OnClickListener() {
+      /*  Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHome();
+                Customer_Main();
             }
         });
 
-        orders.setOnClickListener(new View.OnClickListener() {
+        Orders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openOrders();
+                Customer_AllOrders();
             }
         });
 
-        setting.setOnClickListener(new View.OnClickListener() {
+        Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openSetting();
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openLogin();
             }
         });
+*/
     }
 
-    public void openHome(){
-        Intent intent = new Intent(Setting.this, CustomerMain.class);
-        startActivity(intent);
+    public void Logout(View view) {
+        startActivity(new Intent(Setting.this, MainActivity.class));
     }
 
-    public void openOrders(){
+    public void Custermer_home(View view) {
+        startActivity(new Intent(Setting.this, CustomerMain.class));
+    }
+
+    public void All_orders(View view) {
+        startActivity(new Intent(Setting.this, CustomerAllOrders.class));
+    }
+/*
+    public void Setting(View view) {
+        startActivity(new Intent(Setting.this, Setting.class));
+    }*/
+/*
+    public void Customer_AllOrders() {
         startActivity(new Intent(Setting.this, CustomerAllOrders.class));
     }
 
-    public void openSetting(){
+    public void Customer_Main() {
+        startActivity(new Intent(Setting.this, CustomerMain.class));
+    }*/
+
+
+ /*   public void openSetting(){
         startActivity(new Intent(Setting.this, Setting.class));
     }
 
     public void openLogin(){
         startActivity(new Intent(Setting.this, MainActivity.class));
     }
-
+    */
+/*
+    public void Setting(View view) {
+        startActivity(new Intent(Setting.this, Setting.class));
+    }
+*/
 }
