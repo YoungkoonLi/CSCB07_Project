@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/B07 Project/app/src/main/res/layout/activity_customer_all_orders.xml" value="0.20833333333333334" />
         <entry key="..\:/B07 Project/app/src/main/res/layout/activity_customer_main.xml" value="0.22395833333333334" />
+        <entry key="..\:/B07 Project/app/src/main/res/layout/activity_customer_product_list.xml" value="0.1526268115942029" />
+        <entry key="..\:/B07 Project/app/src/main/res/layout/product_list_row.xml" value="0.22" />
         <entry key="..\:/Giselle/university/CSCB07/b07 Project/app/src/main/res/layout/activity_add_new_product.xml" value="0.5" />
         <entry key="..\:/Giselle/university/CSCB07/b07 Project/app/src/main/res/layout/activity_customer_all_orders.xml" value="0.22" />
         <entry key="..\:/Giselle/university/CSCB07/b07 Project/app/src/main/res/layout/activity_customer_main.xml" value="0.33" />

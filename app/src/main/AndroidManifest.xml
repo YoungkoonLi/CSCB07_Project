@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UTFresh">
         <activity
+            android:name=".CustomerProductList"
+            android:exported="false" />
+        <activity
             android:name=".ViewOrderDetail"
             android:exported="false" />
         <activity
