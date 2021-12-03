@@ -25,8 +25,8 @@
         android:id="@+id/imageView"
         android:layout_width="582dp"
         android:layout_height="770dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="128dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rice_white" />
@@ -68,12 +68,12 @@
         app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959"
+        app:layout_constraintVertical_bias="0.82"
         app:shapeAppearanceOverlay="@style/RoundSquare"
         app:srcCompat="@drawable/small_rectangal" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/logout"
         android:layout_width="335dp"
         android:layout_height="62dp"
         android:layout_marginStart="10dp"
@@ -157,6 +157,43 @@
         android:textSize="22dp"
         tools:layout_editor_absoluteX="29dp"
         tools:layout_editor_absoluteY="150dp" />
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.197"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.928"
+        app:srcCompat="@drawable/ic_home" />
+
+    <ImageButton
+        android:id="@+id/orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.928"
+        app:srcCompat="@drawable/ic_shopping_cart" />
+
+    <ImageButton
+        android:id="@+id/setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.814"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.927"
+        app:srcCompat="@drawable/ic_setting" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

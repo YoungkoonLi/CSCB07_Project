@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
                 setLogin();
             }
         });
+
     }
 
     public void Remember(){
@@ -186,5 +187,9 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
     public void NotFound(){
         Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_LONG).show();
         progressBar.setVisibility(View.GONE);
+    }
+
+    public void setting(View view) {
+        startActivity(new Intent(MainActivity.this, Setting.class));
     }
 }

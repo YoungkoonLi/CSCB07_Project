@@ -243,6 +243,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.531" />
 
+    <Button
+        android:id="@+id/setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Setting"
+        android:onClick="setting"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="23dp" />
+
 
     <!--    <RadioButton-->
     <!--        android:id="@+id/radioStoreOwner"-->
