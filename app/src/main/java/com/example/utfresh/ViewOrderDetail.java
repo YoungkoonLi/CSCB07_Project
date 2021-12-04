@@ -34,7 +34,6 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable, 
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
-    DatabaseReference store;
     FirebaseUser user;
     String uid;
     OrderDetailAdapter adapter;
@@ -61,7 +60,6 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable, 
         user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         uid = user.getUid();
-        store = databaseReference.child(uid);
 
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swip);
