@@ -1,6 +1,7 @@
 package com.example.utfresh;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +10,14 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+@RunWith(MockitoJUnitRunner.class)
+public class testLogin {
+    @Mock
+    MainActivity view;
+
+    @Mock
+    MyModel model;
+
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);

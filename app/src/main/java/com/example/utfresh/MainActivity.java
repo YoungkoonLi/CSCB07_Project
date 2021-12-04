@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -203,4 +204,19 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
     public void Add_new_product(View view) {
         startActivity(new Intent(MainActivity.this, AddNewProduct.class));
     }
+
+
+    // test
+/*    public void displayMessage(String message){
+        TextView textView = findViewById(R.id.textView);
+        textView.setText(message);
+    }
+
+    public String getUsername(){
+        EditText editText = findViewById(R.id.editText);
+        return editText.getText().toString();
+    }
+    public void handleClick(View view){
+        presenter.checkUsername();
+    }*/
 }
