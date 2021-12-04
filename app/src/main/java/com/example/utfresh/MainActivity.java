@@ -197,4 +197,8 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
     public void customer_main(View view) {
         startActivity(new Intent(MainActivity.this, CustomerMain.class));
     }
+
+    public void Add_new_product(View view) {
+        startActivity(new Intent(MainActivity.this, AddNewProduct.class));
+    }
 }

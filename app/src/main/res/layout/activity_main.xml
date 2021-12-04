@@ -255,6 +255,19 @@
         tools:layout_editor_absoluteX="28dp"
         tools:layout_editor_absoluteY="23dp" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add new product"
+        android:onClick="Add_new_product"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.919"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.141" />
+
 
     <!--    <RadioButton-->
     <!--        android:id="@+id/radioStoreOwner"-->
