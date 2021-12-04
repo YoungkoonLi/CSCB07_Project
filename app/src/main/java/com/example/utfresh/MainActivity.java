@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
         progressBar = findViewById(R.id.progressBar);
         model = new Model();
 
-        preferences = getSharedPreferences("bo7", Context.MODE_PRIVATE);
+        preferences = getSharedPreferences("b07", Context.MODE_PRIVATE);
         editor = preferences.edit();
         fAuth = FirebaseAuth.getInstance();
         Remember();
@@ -179,6 +179,8 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
     }
     public void toCustomer(){
         Toast.makeText(getApplicationContext(), "customer logged successfully!", Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(MainActivity.this, CustomerMain.class);
+//        startActivity(intent);
         startActivity(new Intent(MainActivity.this, CustomerMain.class));
     }
     public void toStore(){

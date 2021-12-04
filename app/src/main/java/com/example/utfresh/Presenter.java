@@ -31,6 +31,7 @@ public class Presenter implements Contract.Presenter{
         model.LogIn(email, password, (User user) -> {
             String cus = "cus";
             String s = "store";
+//            String name = user.name;
             if(user == null){
                 view.NotFound();
             }else if(user.type.equals(cus) && isCus) {
