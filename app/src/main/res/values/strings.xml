@@ -47,4 +47,5 @@
         <item>Pending</item>
         <item>Complete</item>
     </string-array>
+    <string name="profile">Profile</string>
 </resources>

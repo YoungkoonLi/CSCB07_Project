@@ -16,6 +16,13 @@ public class Setting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        Button profile = findViewById(R.id.profile);
+        profile.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivityProfile();
+            }
+        });
+
  //       Home = findViewById(R.id.home);
  //       Orders = findViewById(R.id.orders);
    //     Logout = findViewById(R.id.logout);
@@ -49,6 +56,11 @@ public class Setting extends AppCompatActivity {
             }
         });
 */
+    }
+
+    public void openActivityProfile(){
+        Intent intent = new Intent(this, Profile.class);
+        startActivity(intent);
     }
 
     public void Logout(View view) {

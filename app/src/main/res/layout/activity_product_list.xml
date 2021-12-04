@@ -7,7 +7,7 @@
     tools:context=".ProductList">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/store_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -22,44 +22,42 @@
         android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="48dp"
         android:backgroundTint="@color/background_button_color"
         android:text="@string/home"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/orders"
         app:layout_constraintEnd_toStartOf="@+id/orders"
         app:layout_constraintHorizontal_bias="0.262"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swip"
-        app:layout_constraintVertical_bias="0.885" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/orders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="48dp"
         android:backgroundTint="@color/background_button_color"
         android:text="@string/orders"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/setting"
         app:layout_constraintTop_toBottomOf="@+id/swip"
-        app:layout_constraintVertical_bias="0.748" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <Button
         android:id="@+id/setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:text="@string/setting"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/background_button_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.916" />
+        android:text="@string/setting"
+        app:layout_constraintBaseline_toBaselineOf="@+id/orders"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swip"
         android:layout_width="372dp"
         android:layout_height="366dp"
+        android:layout_marginBottom="208dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.41"

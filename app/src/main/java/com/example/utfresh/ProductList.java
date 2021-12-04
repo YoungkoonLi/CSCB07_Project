@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,9 @@ public class ProductList extends AppCompatActivity {
     FirebaseUser user;
     String uid;
 
+    TextView store_name;
+    DatabaseReference StoreDatabaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,11 @@ public class ProductList extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Data");
+        StoreDatabaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
         uid = user.getUid();
+
+        store_name = (TextView) findViewById(R.id.store_name);
 
         swipeRefreshLayout = findViewById(R.id.swip);
         recyclerView = findViewById(R.id.product_list);
@@ -49,6 +57,8 @@ public class ProductList extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         loadData();
+
+        DisplayName();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -82,6 +92,23 @@ public class ProductList extends AppCompatActivity {
         });
 
     }
+
+    private void DisplayName() {
+        StoreDatabaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name = snapshot.child("name").getValue(String.class);
+                store_name.setText(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
 
     public void openActivityStoreOwnerHome(){
         Intent intent = new Intent(this, StoreOwnerHome.class);
