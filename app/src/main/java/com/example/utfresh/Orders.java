@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Orders extends AppCompatActivity implements Serializable{
@@ -34,6 +35,8 @@ public class Orders extends AppCompatActivity implements Serializable{
     private String uid;
     private ArrayList<Order> OrderInfo;
     private ArrayList<ArrayList<OrderData>> all_list;
+
+    private ArrayList<String> key_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +60,9 @@ public class Orders extends AppCompatActivity implements Serializable{
 
         OrderInfo = new ArrayList<Order>();
         all_list = new ArrayList<ArrayList<OrderData>>();
+        key_list = new ArrayList<>();
 
-        loadData(OrderInfo, all_list);
+        loadData(OrderInfo, all_list, key_list);
 
         setAdapter();
 
@@ -92,13 +96,14 @@ public class Orders extends AppCompatActivity implements Serializable{
                 Intent intent = new Intent(getApplicationContext(), ViewOrderDetail.class);
                 intent.putExtra("ItemList", (Serializable) all_list.get(position));
                 intent.putExtra("Customer_Name", OrderInfo.get(position).getCustomer_Name().toString());
+                intent.putExtra("Key_List", key_list.get(position));
                 startActivity(intent);
             }
         };
     }
 
 
-    private void loadData(ArrayList<Order> OrderInfo, ArrayList<ArrayList<OrderData>> all_list) {
+    private void loadData(ArrayList<Order> OrderInfo, ArrayList<ArrayList<OrderData>> all_list, ArrayList<String> key_list) {
         databaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -117,6 +122,11 @@ public class Orders extends AppCompatActivity implements Serializable{
                 }
                 adapter.setItems(OrderInfo);
                 adapter.notifyDataSetChanged();
+
+                for(DataSnapshot key_data : snapshot.getChildren()){
+                    String key = key_data.getKey();
+                    key_list.add(key);
+                }
 
             }
 

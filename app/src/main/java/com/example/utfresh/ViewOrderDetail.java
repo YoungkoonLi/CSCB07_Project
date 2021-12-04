@@ -9,10 +9,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ViewOrderDetail extends AppCompatActivity implements Serializable{
+public class ViewOrderDetail extends AppCompatActivity implements Serializable, AdapterView.OnItemSelectedListener {
 
     TextView username;
     Spinner spinner_order_status;
@@ -36,8 +38,12 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable{
     FirebaseUser user;
     String uid;
     OrderDetailAdapter adapter;
+    String key;
+    String item;
+    String status;
 
     String[] spinner_source = new String[]{
+            "Choose an order status",
             "Pending",
             "Ready for Pick Up",
             "Complete"
@@ -63,6 +69,8 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable{
 
         username = (TextView) findViewById(R.id.username);
         spinner_order_status = (Spinner) findViewById(R.id.spinner_order_status);
+        spinner_order_status.setOnItemSelectedListener(this);
+
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item,
@@ -76,6 +84,7 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable{
 
         ArrayList<OrderData> data_set = (ArrayList<OrderData>) getIntent().getSerializableExtra("ItemList");
         String customer_name = (String) getIntent().getStringExtra("Customer_Name");
+        key = (String) getIntent().getStringExtra("Key_List");
 
 
         username.setText(customer_name);
@@ -90,32 +99,45 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable{
 
 
 
-//        Button update_button = findViewById(R.id.update_button);
-//
-//        update_button.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//            }
-//        });
+        Button update_button = findViewById(R.id.update_button);
+
+        update_button.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                SaveValue(item);
 
 
+            }
+        });
 
 
-
-//        loadData();
 
 
 
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        item = spinner_order_status.getSelectedItem().toString();
 
+    }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
+    }
 
+    public void SaveValue(String item){
+        if(item == "Choose an order status"){
+            Toast.makeText(this, "Please choose an order status", Toast.LENGTH_SHORT).show();
+        }else{
+            status = item;
+            databaseReference.child(uid).child(key).child("OrderInfo").child("Order_Status").setValue(status);
+            Toast.makeText(this, "Updated successfully", Toast.LENGTH_SHORT).show();
+        }
 
+    }
 
 
 //    private void loadData() {
