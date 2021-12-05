@@ -41,7 +41,6 @@ public class CustomerMain extends AppCompatActivity {
         list.setAdapter(storeAdapter);
         //Set linear layout
         list.setLayoutManager(new LinearLayoutManager(this));
-        Toast.makeText(this, "Complete", Toast.LENGTH_SHORT).show();
     }
 
     //Load store from firebase one by one
