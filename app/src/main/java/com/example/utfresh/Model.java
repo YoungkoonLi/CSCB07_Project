@@ -30,9 +30,7 @@ public class Model implements Contract.Model{
         fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(!task.isSuccessful()){
-                    callback.accept(null);
-                }else{
+                if(task.isSuccessful()){
                     users.child(fAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -44,22 +42,9 @@ public class Model implements Contract.Model{
 
                         }
                     });
+                }else{
+                     callback.accept(null);
                 }
-//                if(task.isSuccessful()){
-//                    users.child(fAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            User user = snapshot.getValue(User.class);
-//                            callback.accept(user);
-//                        }
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
-//                }else{
-//                     callback.accept(null);
-//                }
             }
         });
     }
