@@ -9,9 +9,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/storeList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:maxWidth="10mm"
         android:maxHeight="10mm"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

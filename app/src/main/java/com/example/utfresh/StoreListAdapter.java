@@ -19,10 +19,19 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
     Context context;
     ArrayList<String> names;
     ArrayList<String> IDs;
+    String[] test = {"Walmart", "Shoppers", "Sobeys", "Safeway", "Costco", "Save-on-foods", "Superstore", "Store", "Example", "Subway"};
     public StoreListAdapter(Context context, ArrayList<String> names, ArrayList<String> IDs){
         this.context = context;
         this.names = names;
         this.IDs = IDs;
+        for(String s : names){
+            Log.e("namesTest", s);
+        }
+        Log.e(",,", "-----------------\n");
+        for(String s : IDs){
+            Log.e("idsTest", s);
+        }
+        Log.e("", "Set up complete!");
     }
 
     @NonNull
@@ -34,8 +43,9 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
 
     @Override
     public void onBindViewHolder(@NonNull StoreViewHolder holder, int position) {
-        holder.storeName.setText(names.get(position));
-        Log.e("Test1", names.get(position));
+        //holder.storeName.setText(names.get(position));
+        holder.storeName.setText(test[position]);
+        //Log.e("Test1", test[position]);
         holder.image.setImageResource(R.drawable.sample_store);
         /*
         holder.rootLayout.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +61,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
 
     @Override
     public int getItemCount() {
-        return names.size();
+        return test.length;
     }
 
     public class StoreViewHolder extends RecyclerView.ViewHolder{

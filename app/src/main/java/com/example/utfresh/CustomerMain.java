@@ -26,20 +26,25 @@ public class CustomerMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
+        storeIDs = new ArrayList<>();
+        storeNames = new ArrayList<>();
         loadStore();
         list = findViewById(R.id.storeList);
         //set up viewAdapter
         StoreListAdapter storeAdapter = new StoreListAdapter(this, storeNames, storeIDs);
+        Log.e("Test 11", String.valueOf(storeNames.size()));
+        for(String s : storeNames){
+            Log.e("My Test", s);
+        }
         list.setAdapter(storeAdapter);
-        //Set to linear layout
+        //Set linear layout
         list.setLayoutManager(new LinearLayoutManager(this));
         Toast.makeText(this, "Complete", Toast.LENGTH_SHORT).show();
     }
 
     //Load store from firebase one by one
     protected void loadStore(){
-        storeIDs = new ArrayList<>();
-        storeNames = new ArrayList<>();
+
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.stores_database));
         dataRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
