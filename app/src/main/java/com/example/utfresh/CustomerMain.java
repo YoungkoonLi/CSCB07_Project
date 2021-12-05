@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ public class CustomerMain extends AppCompatActivity {
     RecyclerView list; // The recyclerView
     ArrayList<String> storeNames; // list of store names
     ArrayList<String> storeIDs; // list of store IDs
+    StoreListAdapter storeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +30,23 @@ public class CustomerMain extends AppCompatActivity {
         setContentView(R.layout.activity_customer_main);
         storeIDs = new ArrayList<>();
         storeNames = new ArrayList<>();
-        loadStore();
+        //initialize adapter
+
+        loadStore(storeNames, storeIDs);
         list = findViewById(R.id.storeList);
         //set up viewAdapter
-        StoreListAdapter storeAdapter = new StoreListAdapter(this, storeNames, storeIDs);
+        storeAdapter = new StoreListAdapter(this);
         Log.e("Test 11", String.valueOf(storeNames.size()));
-        for(String s : storeNames){
-            Log.e("My Test", s);
-        }
+        Log.e("eeee", storeAdapter.names.toString());
         list.setAdapter(storeAdapter);
         //Set linear layout
         list.setLayoutManager(new LinearLayoutManager(this));
         Toast.makeText(this, "Complete", Toast.LENGTH_SHORT).show();
+
     }
 
     //Load store from firebase one by one
-    protected void loadStore(){
-
+    protected void loadStore(ArrayList<String> storeNames, ArrayList<String> storeIDs){
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.stores_database));
         dataRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -54,7 +56,10 @@ public class CustomerMain extends AppCompatActivity {
                 } else {
                     for(DataSnapshot child : task.getResult().getChildren()){
                         storeIDs.add(child.getKey());
+                        storeAdapter.addToIDs(child.getKey());
+                        Log.e("ffff", "Added " + child.getKey());
                     }
+
                 }
             }
         });
@@ -66,10 +71,11 @@ public class CustomerMain extends AppCompatActivity {
                 if (!task.isSuccessful()) {
                     Log.e("User Database", "Error getting data", task.getException());
                 } else {
-                    for(DataSnapshot child : task.getResult().getChildren()){
+                    for (DataSnapshot child : task.getResult().getChildren()) {
                         //check if id exists in the list
-                        if(storeIDs.contains(child.getKey())){
-                            storeNames.add( (String) (child.child("name").getValue()));
+                        if (storeIDs.contains(child.getKey())) {
+                            storeNames.add((String) (child.child("name").getValue()));
+                            storeAdapter.addToNames((String) (child.child("name").getValue()));
                         }
                     }
                 }

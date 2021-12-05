@@ -17,21 +17,11 @@ import java.util.ArrayList;
 public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.StoreViewHolder> {
 
     Context context;
-    ArrayList<String> names;
-    ArrayList<String> IDs;
-    String[] test = {"Walmart", "Shoppers", "Sobeys", "Safeway", "Costco", "Save-on-foods", "Superstore", "Store", "Example", "Subway"};
-    public StoreListAdapter(Context context, ArrayList<String> names, ArrayList<String> IDs){
+    ArrayList<String> names = new ArrayList<>();
+    ArrayList<String> IDs = new ArrayList<>();
+    //String[] test = {"Walmart", "Shoppers", "Sobeys", "Safeway", "Costco", "Save-on-foods", "Superstore", "Store", "Example", "Subway"};
+    public StoreListAdapter(Context context){
         this.context = context;
-        this.names = names;
-        this.IDs = IDs;
-        for(String s : names){
-            Log.e("namesTest", s);
-        }
-        Log.e(",,", "-----------------\n");
-        for(String s : IDs){
-            Log.e("idsTest", s);
-        }
-        Log.e("", "Set up complete!");
     }
 
     @NonNull
@@ -43,8 +33,8 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
 
     @Override
     public void onBindViewHolder(@NonNull StoreViewHolder holder, int position) {
-        //holder.storeName.setText(names.get(position));
-        holder.storeName.setText(test[position]);
+        holder.storeName.setText(names.get(position));
+//        holder.storeName.setText(test[position]);
         //Log.e("Test1", test[position]);
         holder.image.setImageResource(R.drawable.sample_store);
         /*
@@ -61,7 +51,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
 
     @Override
     public int getItemCount() {
-        return test.length;
+        return names.size();
     }
 
     public class StoreViewHolder extends RecyclerView.ViewHolder{
@@ -74,6 +64,14 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
             image = itemView.findViewById(R.id.store_image);
             rootLayout = itemView.findViewById(R.id.root_layout);
         }
+    }
+
+    public void addToNames(String name){
+        this.names.add(name);
+    }
+
+    public void addToIDs(String ID){
+        this.IDs.add(ID);
     }
 
 }

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -65,6 +66,9 @@ public class Orders extends AppCompatActivity implements Serializable{
         loadData(OrderInfo, all_list, key_list);
 
         setAdapter();
+        Log.e("orders", adapter.list.toString());
+        Log.e("orders",key_list.toString());
+        Log.e("orders", all_list.toString());
 
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -108,7 +112,7 @@ public class Orders extends AppCompatActivity implements Serializable{
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot value1 : snapshot.getChildren()) {
-                    ArrayList<OrderData> Item_List = new ArrayList<>(); ;
+                    ArrayList<OrderData> Item_List = new ArrayList<>();
                     for(DataSnapshot value2 : value1.child("Item_List").getChildren()){
                         OrderData item = value2.getValue(OrderData.class);
                         Item_List.add(item);
