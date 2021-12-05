@@ -1,6 +1,7 @@
 package com.example.utfresh;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ProductViewHolder> {
     Context context;
-    String[] names;
-    String[] prices;
-    String[] categories;
-    public ProductListAdapter(Context context, String[] names, String[] prices, String[] categories){
+    ArrayList<String> names;
+    ArrayList<String> prices;
+    ArrayList<String> categories;
+    public ProductListAdapter(Context context){
         this.context = context;
-        this.names = names;
-        this.prices = prices;
-        this.categories = categories;
+        //Initialize to empty list. Awaiting data from firebase.
+        this.names = new ArrayList<>();
+        this.prices = new ArrayList<>();
+        this.categories = new ArrayList<>();
     }
 
     @NonNull
@@ -29,14 +33,26 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        holder.name.setText(names[position]);
-        holder.price.setText(prices[position]);
-        holder.category.setText(categories[position]);
+        holder.name.setText(names.get(position));
+        holder.price.setText("$" + prices.get(position));
+        holder.category.setText(categories.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return names.length;
+        Log.e("text", names.size() + "");
+        return names.size();
+    }
+
+    /*This function sets all arraylist fields in this class to the given parameter
+     * This is not done in the constructor because data must be retrieved from firebase before
+     * populating the lists.
+     */
+    public void setAllList(ArrayList<String> names, ArrayList<String> prices, ArrayList<String> categories){
+        this.names.addAll(names);
+        this.prices.addAll(prices);
+        this.categories.addAll(categories);
+        notifyDataSetChanged();
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder{
@@ -50,5 +66,4 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             category = itemView.findViewById(R.id.product_category);
         }
     }
-
 }

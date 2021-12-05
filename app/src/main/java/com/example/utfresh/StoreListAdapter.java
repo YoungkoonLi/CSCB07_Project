@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,38 +37,44 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
     @Override
     public void onBindViewHolder(@NonNull StoreViewHolder holder, int position) {
         holder.storeName.setText(names.get(position));
-//        holder.storeName.setText(test[position]);
+        holder.storeID.setText(IDs.get(position));
+        holder.storeID.setVisibility(View.INVISIBLE);
         holder.image.setImageResource(R.drawable.sample_store);
-        /*
         holder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CustomerProductList.class);
                 intent.putExtra("storeName", holder.storeName.getText());
+                intent.putExtra("storeID", holder.storeID.getText());
                 context.startActivity(intent);
             }
         });
-        */
     }
 
     @Override
     public int getItemCount() {
-        Log.e("text", names.size() + "");
         return names.size();
     }
 
+    /*The ViewHolder class for this adapter. */
     public class StoreViewHolder extends RecyclerView.ViewHolder{
         TextView storeName;
+        TextView storeID;
         ImageView image;
         ConstraintLayout rootLayout;
         public StoreViewHolder(@NonNull View itemView) {
             super(itemView);
             storeName = itemView.findViewById(R.id.store_name);
+            storeID = itemView.findViewById(R.id.store_id);
             image = itemView.findViewById(R.id.store_image);
             rootLayout = itemView.findViewById(R.id.root_layout);
         }
     }
 
+    /*This function sets 2 arraylist field in this class to the given parameter.
+     * This is not done in the constructor because data must be retrieved from firebase before
+     * populating the lists.
+     */
     public void setAllList(ArrayList<String> names, ArrayList<String> IDs){
         this.names.addAll(names);
         this.IDs.addAll(IDs);

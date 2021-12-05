@@ -24,9 +24,11 @@
                 android:id="@+id/store_image"
                 android:layout_width="110dp"
                 android:layout_height="107dp"
+                android:layout_marginStart="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/googleg_standard_color_18" />
 
             <TextView
@@ -38,8 +40,24 @@
                 android:text="Store Name"
                 android:textSize="30dp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/store_image"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/store_id"
+                android:layout_width="99dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="96dp"
+                android:layout_marginEnd="103dp"
+                android:layout_marginBottom="16dp"
+                android:text="Store ID"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/store_image"
+                app:layout_constraintTop_toBottomOf="@+id/store_name"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
