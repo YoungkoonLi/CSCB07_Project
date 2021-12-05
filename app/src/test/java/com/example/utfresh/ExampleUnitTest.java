@@ -1,5 +1,11 @@
 package com.example.utfresh;
 
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -51,6 +57,7 @@ public class testPresenter(){
         onView(withText(R."store logged successfully!")).inRoot(new ToastMatcher()) .check(matches(isDisplayed()));
 
         //
+        onView(withText(R.string.TOAST_STRING)).inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
 
 
 
