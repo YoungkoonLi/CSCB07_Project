@@ -17,11 +17,12 @@ import java.util.ArrayList;
 public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.StoreViewHolder> {
 
     Context context;
-    ArrayList<String> names = new ArrayList<>();
-    ArrayList<String> IDs = new ArrayList<>();
-    //String[] test = {"Walmart", "Shoppers", "Sobeys", "Safeway", "Costco", "Save-on-foods", "Superstore", "Store", "Example", "Subway"};
+    ArrayList<String> names;
+    ArrayList<String> IDs;
     public StoreListAdapter(Context context){
         this.context = context;
+        this.names = new ArrayList<>();
+        this.IDs = new ArrayList<>();
     }
 
     @NonNull
@@ -35,7 +36,6 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
     public void onBindViewHolder(@NonNull StoreViewHolder holder, int position) {
         holder.storeName.setText(names.get(position));
 //        holder.storeName.setText(test[position]);
-        //Log.e("Test1", test[position]);
         holder.image.setImageResource(R.drawable.sample_store);
         /*
         holder.rootLayout.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +51,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
 
     @Override
     public int getItemCount() {
+        Log.e("text", names.size() + "");
         return names.size();
     }
 
@@ -66,12 +67,10 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
         }
     }
 
-    public void addToNames(String name){
-        this.names.add(name);
-    }
-
-    public void addToIDs(String ID){
-        this.IDs.add(ID);
+    public void setAllList(ArrayList<String> names, ArrayList<String> IDs){
+        this.names.addAll(names);
+        this.IDs.addAll(IDs);
+        notifyDataSetChanged();
     }
 
 }

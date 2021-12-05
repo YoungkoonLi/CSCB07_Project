@@ -13,9 +13,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class CustomerMain extends AppCompatActivity {
@@ -23,6 +26,7 @@ public class CustomerMain extends AppCompatActivity {
     ArrayList<String> storeNames; // list of store names
     ArrayList<String> storeIDs; // list of store IDs
     StoreListAdapter storeAdapter;
+    DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,56 +34,57 @@ public class CustomerMain extends AppCompatActivity {
         setContentView(R.layout.activity_customer_main);
         storeIDs = new ArrayList<>();
         storeNames = new ArrayList<>();
-        //initialize adapter
-
-        loadStore(storeNames, storeIDs);
+        /* initialize adapter and get the recyclerview */
         list = findViewById(R.id.storeList);
-        //set up viewAdapter
-        storeAdapter = new StoreListAdapter(this);
-        Log.e("Test 11", String.valueOf(storeNames.size()));
-        Log.e("eeee", storeAdapter.names.toString());
+        storeAdapter = new StoreListAdapter(CustomerMain.this);
+        loadStore(storeNames, storeIDs);
         list.setAdapter(storeAdapter);
         //Set linear layout
         list.setLayoutManager(new LinearLayoutManager(this));
         Toast.makeText(this, "Complete", Toast.LENGTH_SHORT).show();
-
     }
 
     //Load store from firebase one by one
     protected void loadStore(ArrayList<String> storeNames, ArrayList<String> storeIDs){
-        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.stores_database));
-        dataRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        ref = FirebaseDatabase.getInstance().getReference();
+        readOnCallback(new FireBaseCallback() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("", "Error getting data", task.getException());
-                } else {
-                    for(DataSnapshot child : task.getResult().getChildren()){
-                        storeIDs.add(child.getKey());
-                        storeAdapter.addToIDs(child.getKey());
-                        Log.e("ffff", "Added " + child.getKey());
-                    }
+            public void onCallback(ArrayList<String> storeNames, ArrayList<String> storeIDs) {
+                storeAdapter.setAllList(storeNames, storeIDs);
+            }
+        });
+    }
 
-                }
-            }
-        });
-        //Retrieve the names of the stores using the list of ids obtained.
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.users_database));
-        userRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+
+    //Custom callback for firebase and other related implementations
+    private interface FireBaseCallback{
+        void onCallback(ArrayList<String> storeNames, ArrayList<String> storeIDs);
+    }
+
+    private void readOnCallback(FireBaseCallback callback){
+        ValueEventListener listener = new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("User Database", "Error getting data", task.getException());
-                } else {
-                    for (DataSnapshot child : task.getResult().getChildren()) {
-                        //check if id exists in the list
-                        if (storeIDs.contains(child.getKey())) {
-                            storeNames.add((String) (child.child("name").getValue()));
-                            storeAdapter.addToNames((String) (child.child("name").getValue()));
-                        }
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i("demo", "data changed");
+                for(DataSnapshot child:dataSnapshot.child("Data").getChildren()) {
+                    storeIDs.add(child.getKey());
+                }
+                for(DataSnapshot child : dataSnapshot.child("Users").getChildren()){
+                    if(storeIDs.contains(child.getKey())){
+                       storeNames.add((String)child.child("name").getValue());
+                       Log.e("fuck",(String)child.child("name").getValue());
                     }
                 }
+                callback.onCallback(storeNames, storeIDs);
             }
-        });
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("warning", "loadPost:onCancelled",
+                        databaseError.toException());
+            }
+        };
+        ref.addValueEventListener(listener);
+
     }
 }
