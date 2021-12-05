@@ -23,21 +23,6 @@
     <string name="complete">Complete</string>
     <string name="order_status">Order Status</string>
     <string name="email">Enter email</string>
-    <string-array name="sample_store_names">
-        <item>Wall Mart</item>
-        <item>Waste-On-Foods</item>
-        <item>Fake American Inferstore</item>
-        <item>Sobeys</item>
-        <item>Sellers</item>
-        <item>WorstBuy</item>
-        <item>American Wheel</item>
-        <item>London Drugs</item>
-        <item>Phuck</item>
-        <item>BurgerQueen</item>
-        <item>Pizza Coldline</item>
-        <item>DangerWay</item>
-        <item>IKEA</item>
-    </string-array>
     <string name="remember">Remember Me</string>
     <string name="update_button">UPDATE</string>
     <string name="shopping_cart">Shopping Cart</string>
@@ -48,4 +33,6 @@
         <item>Complete</item>
     </string-array>
     <string name="profile">Profile</string>
+    <string name="stores_database">Data</string>
+    <string name="users_database">Users</string>
 </resources>

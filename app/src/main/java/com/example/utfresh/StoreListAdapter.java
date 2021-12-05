@@ -1,24 +1,28 @@
 package com.example.utfresh;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 
-import java.util.zip.Inflater;
 
 public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.StoreViewHolder> {
 
     Context context;
-    String[] names;
-    public StoreListAdapter(Context context, String[] names){
+    ArrayList<String> names;
+    ArrayList<String> IDs;
+    public StoreListAdapter(Context context, ArrayList<String> names, ArrayList<String> IDs){
         this.context = context;
         this.names = names;
+        this.IDs = IDs;
     }
 
     @NonNull
@@ -30,22 +34,35 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
 
     @Override
     public void onBindViewHolder(@NonNull StoreViewHolder holder, int position) {
-        holder.storeName.setText(names[position]);
+        holder.storeName.setText(names.get(position));
+        Log.e("Test1", names.get(position));
         holder.image.setImageResource(R.drawable.sample_store);
+        /*
+        holder.rootLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CustomerProductList.class);
+                intent.putExtra("storeName", holder.storeName.getText());
+                context.startActivity(intent);
+            }
+        });
+        */
     }
 
     @Override
     public int getItemCount() {
-        return names.length;
+        return names.size();
     }
 
     public class StoreViewHolder extends RecyclerView.ViewHolder{
         TextView storeName;
         ImageView image;
+        ConstraintLayout rootLayout;
         public StoreViewHolder(@NonNull View itemView) {
             super(itemView);
             storeName = itemView.findViewById(R.id.store_name);
             image = itemView.findViewById(R.id.store_image);
+            rootLayout = itemView.findViewById(R.id.root_layout);
         }
     }
 
