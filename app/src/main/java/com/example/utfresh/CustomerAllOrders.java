@@ -26,7 +26,6 @@ public class CustomerAllOrders extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DatabaseReference OrderDatabase;
-    DatabaseReference StoreDatabase;
     DatabaseReference CusDatabase;
     CusAllOrdAdapter CusAdapter;
     FirebaseUser FBCusUser;   //current logged in user
@@ -49,7 +48,6 @@ public class CustomerAllOrders extends AppCompatActivity {
 
         FBCusUser = FirebaseAuth.getInstance().getCurrentUser();
         OrderDatabase = FirebaseDatabase.getInstance().getReference("Order");
-        StoreDatabase = FirebaseDatabase.getInstance().getReference("User");
         CusId = FBCusUser.getUid();  //this is the current customer that logs in
         CusDatabase = FirebaseDatabase.getInstance().getReference().child("User " + CusId); //this is the data for current logged in user
         // set up variables
