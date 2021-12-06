@@ -1,13 +1,14 @@
 package com.example.utfresh;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -72,6 +73,18 @@ public class CustomerProductList extends AppCompatActivity {
                 productAdapter.setAllList(names, prices, categories);
             }
         });
+    }
+
+    public void Setting(View view) {
+        startActivity(new Intent(CustomerProductList.this, Setting.class));
+    }
+
+    public void Customer_home(View view) {
+        startActivity(new Intent(CustomerProductList.this, CustomerMain.class));
+    }
+
+    public void Customer_orders(View view) {
+        startActivity(new Intent(CustomerProductList.this, CustomerAllOrders.class));
     }
 
     //Custom callback for firebase and other related implementations

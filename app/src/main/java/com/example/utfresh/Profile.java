@@ -1,10 +1,12 @@
 package com.example.utfresh;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,5 +55,17 @@ public class Profile extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void Setting(View view) {
+        startActivity(new Intent(Profile.this, Setting.class));
+    }
+
+    public void Customer_home(View view) {
+        startActivity(new Intent(Profile.this, CustomerMain.class));
+    }
+
+    public void Customer_orders(View view) {
+        startActivity(new Intent(Profile.this, CustomerAllOrders.class));
     }
 }
