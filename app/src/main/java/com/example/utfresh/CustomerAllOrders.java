@@ -85,7 +85,7 @@ public class CustomerAllOrders extends AppCompatActivity {
             public void onDataChange (com.google.firebase.database.DataSnapshot dataSnapshot2){
                 for (com.google.firebase.database.DataSnapshot Store_snapshot : dataSnapshot2.getChildren()) {
                     //this loops child "Order" to get each Store
-                    for (com.google.firebase.database.DataSnapshot StoreOrder_snapshot: dataSnapshot2.getChildren()){
+                    for (com.google.firebase.database.DataSnapshot StoreOrder_snapshot: Store_snapshot.getChildren()){
                         //this loops each Store to get each StoreOrder
 
                         if (StoreOrder_snapshot.child("OrderInfo").getValue() == null){
