@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class CustomerAllOrders extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -32,6 +34,7 @@ public class CustomerAllOrders extends AppCompatActivity {
     String CusName;     //name for for current logged in user
     User CusUser;       //value of type User for current logged in user
     String Order_Status;
+    ArrayList<Order> StoreOrder_list;
 
     String StoreName;   //name of the store in loop
     String LoopUserName;    //name of customer in loop
@@ -55,9 +58,8 @@ public class CustomerAllOrders extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //CusAdapter = new CusAllOrdAdapter(this);
-        recyclerView.setAdapter(CusAdapter);
-        // tha above is for activity layout
+
+        // the above is for activity layout
 
         postListener = new ValueEventListener() {
             @Override
@@ -99,28 +101,23 @@ public class CustomerAllOrders extends AppCompatActivity {
                             //deal with nullpointerexception
                         }
 
-                            LoopUserName = StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue().toString();
-                            StoreName = StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue().toString();
+                        LoopUserName = StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue().toString();
+                        StoreName = StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue().toString();
 
-                            if(LoopUserName.equals(CusName)){
-                                if (StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue() == null){
-                                    Toast.makeText(getApplicationContext(), "No Order Status", Toast.LENGTH_LONG).show();
-                                    break;
-                                    //deal with nullpointerexception
-                                }
+                        if(LoopUserName.equals(CusName)){
+                            if (StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue() == null){
+                                Toast.makeText(getApplicationContext(), "No Order Status", Toast.LENGTH_LONG).show();
+                                break;
+                                //deal with nullpointerexception
+                            }
 
-                                Order_Status = StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue().toString();
+                            Order_Status = StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue().toString();
                             //set Order_Status to match the current logged in user
 
-
-
-
-                            //need to save StoreName and Order_Status in a ArrayList
-
-
-
-
-
+                            Order OrdLoop = new Order("", StoreName);
+                            OrdLoop.SetOrderStatus(Order_Status);
+                            StoreOrder_list.add(OrdLoop);
+                            //save StoreName and Order_Status in a ArrayList
                         }
 
                     }
@@ -133,19 +130,11 @@ public class CustomerAllOrders extends AppCompatActivity {
             }
         };
 
+        CusAdapter = new CusAllOrdAdapter(this);
+        CusAdapter.setItems(StoreOrder_list);
+        recyclerView.setAdapter(CusAdapter);
 
     }
-
-
-    public void Setting(View view) {
-        startActivity(new Intent(CustomerAllOrders.this, CustomerMain.class));
-    }
-
-
-    public void Custermer_home(View view) {
-        startActivity(new Intent(CustomerAllOrders.this, CustomerMain.class));
-    }
-
 
 
 /*    loadData();
