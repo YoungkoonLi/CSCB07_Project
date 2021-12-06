@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class CusAllOrdAdapter extends RecyclerView.Adapter<CusAllOrdAdapter.CusAllOrdViewHolder>{
     //this is the setup for item_cus_all_order, which is each row in RecyclerView
 
-    Context context;
-    ArrayList<Order> list;
+    private Context context;
+    private ArrayList<Order> list;
 
     public CusAllOrdAdapter(Context context) {
         this.context = context;
