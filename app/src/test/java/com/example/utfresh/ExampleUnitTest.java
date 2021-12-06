@@ -1,13 +1,18 @@
 package com.example.utfresh;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import android.util.Patterns;
+import android.widget.TextView;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InOrder;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -22,8 +27,270 @@ public class testPresenter(){
     @Mock
     Model model;
 
+
     @Test
-    public void testSignin() {
+    public void testSignin_empty_email(){
+
+        String email = "";
+        String password = "password";
+        boolean Cus = true;
+        boolean Store = true;
+        String message1 = "Error!";
+        String message2 = "email is required!";
+
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(model.LogIn(email,password,Consumer<User> callback )).thenCallback.accept(customer);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email,password, Cus, Store);
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message1);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message2);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(view, view);
+        order.verify(view).TextUtils.isEmpty(email);
+        order.verify(view).displayMessage(message2);
+
+    }
+
+    @Test
+    public void testSignin_empty_password(){
+
+        String email = "user@user.com";
+        String password = "";
+        boolean Cus = true;
+        boolean Store = true;
+        String message = "password is required";
+
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(model.LogIn(email,password,Consumer<User> callback )).thenCallback.accept(customer);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email,password,Cus,Store);
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(view, view);
+        order.verify(view).TextUtils.isEmpty(pass);
+        order.verify(view).displayMessage(message);
+
+    }
+
+    @Test
+    public void testSignin_invalid_email(){
+
+        String email = "user";
+        String password = "password";
+        boolean Cus = true;
+        boolean Store = true;
+        String message = "Please provide valid email!";
+
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(model.LogIn(email,password,Consumer<User> callback )).thenCallback.accept(customer);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email,password,Cus,Store);
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(view, view);
+        order.verify(view).Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        order.verify(view).displayMessage(message);
+
+    }
+
+
+    @Test
+    public void testSignin_invalid_password(){
+
+        String email = "user@user.com";
+        String password = "0";
+        boolean Cus = true;
+        boolean Store = true;
+        String message = "Password should have at least 6 characters!";
+
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(model.LogIn(email,password,Consumer<User> callback )).thenCallback.accept(customer);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email,password,Cus,Store);
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(view, view);
+        order.verify(view).pass.length();
+        order.verify(view).displayMessage(message);
+
+    }
+
+    @Test
+    public void testSignin_user_NotFound(){
+
+        String email = "user@user.com";
+        String password = "password";
+        boolean Cus = true;
+        boolean Store = true;
+        String message = "Error!";
+
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(model.LogIn(email,password,Consumer<User> callback )).thenCallback.accept(null);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email,password,Cus,Store);
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(model, view, view);
+        order.verify(model).LogIn(email,password,Consumer<User> callback );
+        order.verify(view).NotFound();
+        order.verify(view).displayMessage(message);
+
+    }
+
+    @Test
+    public void testSignin_ToCustomer(){
+
+        String email = "user@user.com";
+        String password = "password";
+        boolean Cus = true;
+        boolean Store = true;
+        String message = "customer logged successfully!";
+
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(model.LogIn(email,password,Consumer<User> callback )).thenCallback.accept(customer);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email,password,Cus,Store);
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(model, view, view);
+        order.verify(model).LogIn(email,password,Consumer<User> callback );
+        order.verify(view).toCustomer();
+        order.verify(view).displayMessage(message);
+
+    }
+
+    @Test
+    public void testSignin_ToStore(){
+
+        String email = "user@user.com";
+        String password = "password";
+        boolean Cus = false;
+        boolean Store = true;
+        String message = "store logged successfully!";
+
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(model.LogIn(email,password,Consumer<User> callback )).thenCallback.accept(customer);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email,password,Cus,Store);
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(model, view, view);
+        order.verify(model).LogIn(email,password,Consumer<User> callback );
+        order.verify(view).toStore();
+        order.verify(view).displayMessage(message);
+
+    }
+
+    @Test
+    public void testSignin_onError(){
+
+        String email = "user@user.com";
+        String password = "password";
+        boolean Cus = false;
+        boolean Store = false;
+        String message1 = "Please select login as Customer or StoreOwner!";
+        String message2 = "Please select correct user type!";
+
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(model.LogIn(email,password,Consumer<User> callback )).thenCallback.accept(customer);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email,password,Cus,Store);
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message1);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message1);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(model, view);
+        order.verify(model).LogIn(email,password,Consumer<User> callback );
+        order.verify(view).displayMessage(message1);
+
+    }
+
+
 
         //mockito
         when(model.LogIn("a@a.com","123",Consumer<User> callback)).thenCallback(null);
@@ -81,4 +348,9 @@ public class testPresenter(){
         }
     }
 
-}
+
+    //这个放到view里面
+public void displayMessage(String message){
+        TextView textView = findViewById(R.id.textView);
+        textView.setText(message);
+        }
