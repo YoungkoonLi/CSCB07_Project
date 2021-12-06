@@ -6,23 +6,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.crashlytics.buildtools.reloc.javax.annotation.Nonnull;
+import java.util.ArrayList;
 
 public class CusAllOrdAdapter extends RecyclerView.Adapter<CusAllOrdAdapter.CusAllOrdViewHolder>{
 
     Context context;
-    String[] Order_Status;
-    String[] Store_Name;
+    ArrayList<Order> list;
 
 
-    public CusAllOrdAdapter(Context context, String[] Order_Status, String[] Store_Name) {
+
+    public CusAllOrdAdapter(Context context) {
         this.context = context;
-        this.Order_Status = Order_Status;
-        this.Store_Name = Store_Name;
+    }
+
+    public void setItems(ArrayList<Order> order_list){
+        list.addAll(order_list);
     }
 
     @NonNull
@@ -34,20 +35,20 @@ public class CusAllOrdAdapter extends RecyclerView.Adapter<CusAllOrdAdapter.CusA
 
     @Override
     public void onBindViewHolder(@NonNull CusAllOrdViewHolder holder, int position) {
-        holder.Order_Status.setText(Order_Status[position]);
-        holder.Store_Name.setText(Store_Name[position]);
+        Order order = list.get(position);
+        holder.Order_Status.setText(order.getOrder_Status());
+        holder.Store_Name.setText(order.getStore_Name());
     }
 
     @Override
     public int getItemCount() {
-        return Order_Status.length;
+        return list.size();
     }
 
     // this helps java file CustomerAllOrders set the RecyclerView
     public class CusAllOrdViewHolder extends RecyclerView.ViewHolder{
 
         TextView Store_Name, Order_Status;
-
         public CusAllOrdViewHolder(@Nonnull View itemView) {
             super(itemView);
             Store_Name = itemView.findViewById(R.id.Store_Name);
