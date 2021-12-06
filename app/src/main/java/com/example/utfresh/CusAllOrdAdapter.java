@@ -15,14 +15,11 @@ public class CusAllOrdAdapter extends RecyclerView.Adapter<CusAllOrdAdapter.CusA
     //this is the setup for item_cus_all_order, which is each row in RecyclerView
 
     private Context context;
-    private ArrayList<Order> list;
+    ArrayList<Order> list;
 
-    public CusAllOrdAdapter(Context context) {
+    public CusAllOrdAdapter(ArrayList<Order> StoreOrder_list, Context context) {
+        list.addAll(StoreOrder_list);
         this.context = context;
-    }
-
-    public void setItems(ArrayList<Order> order_list){
-        list.addAll(order_list);
     }
 
     @NonNull

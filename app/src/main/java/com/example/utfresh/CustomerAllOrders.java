@@ -77,6 +77,9 @@ public class CustomerAllOrders extends AppCompatActivity {
         };
         CusDatabase.addValueEventListener(postListener);
 
+
+
+
         OrderListener = new ValueEventListener() {
             @Override
             public void onDataChange (com.google.firebase.database.DataSnapshot dataSnapshot2){
@@ -128,11 +131,12 @@ public class CustomerAllOrders extends AppCompatActivity {
             }
         };
 
-        CusAdapter = new CusAllOrdAdapter(this);
-        CusAdapter.setItems(StoreOrder_list);
+        CusAdapter = new CusAllOrdAdapter(StoreOrder_list, this);
         recyclerView.setAdapter(CusAdapter);
 
     }
+
+
 
 
 /*    loadData();
