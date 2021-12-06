@@ -51,7 +51,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     public void onBindViewHolder(@NonNull OrderDetailAdapter.OrderDetailViewHolder holder, int position) {
         OrderData data = list.get(position);
         holder.Product_Name.setText(data.getProduct_name());
-        holder.Price.setText(data.getPrice());
+        holder.Price.setText("$" + data.getPrice());
         holder.Quantity.setText(data.getQuantity());
         holder.Category.setText(data.getCategory());
 
