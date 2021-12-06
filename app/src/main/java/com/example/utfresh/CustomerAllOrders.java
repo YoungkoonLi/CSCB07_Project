@@ -5,6 +5,7 @@ package com.example.utfresh;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -61,10 +62,12 @@ public class CustomerAllOrders extends AppCompatActivity {
         postListener = new ValueEventListener() {
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-                if (CusUser != null) {
-                    CusUser = dataSnapshot.getValue(User.class);    // now CusUser has current logged in user's info, and it is of type User
-                    CusName = CusUser.name;
+                CusUser = dataSnapshot.getValue(User.class);    // now CusUser has current logged in user's info, and it is of type User
+                if (CusUser == null) {
+                    Toast.makeText(getApplicationContext(), "No Current User", Toast.LENGTH_LONG).show();
+                    //deal with nullpointerexception
                 }
+                CusName = CusUser.name;
             }
 
             @Override
@@ -81,12 +84,31 @@ public class CustomerAllOrders extends AppCompatActivity {
                     //this loops child "Order" to get each Store
                     for (com.google.firebase.database.DataSnapshot StoreOrder_snapshot: dataSnapshot2.getChildren()){
                         //this loops each Store to get each StoreOrder
-                        if (StoreOrder_snapshot.child("OrderInfo").getValue() != null &&
-                                StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue() != null &&
-                                StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue() != null) {
+
+                        if (StoreOrder_snapshot.child("OrderInfo").getValue() == null){
+                            Toast.makeText(getApplicationContext(), "No Order Yet", Toast.LENGTH_LONG).show();
+                            break;
+                        }
+                        if (StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue() == null) {
+                            Toast.makeText(getApplicationContext(), "No Customer Name", Toast.LENGTH_LONG).show();
+                            break;
+                        }
+                        if (StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue() == null) {
+                            Toast.makeText(getApplicationContext(), "No Store Name", Toast.LENGTH_LONG).show();
+                            break;
+                            //deal with nullpointerexception
+                        }
+
                             LoopUserName = StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue().toString();
                             StoreName = StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue().toString();
+
                             if(LoopUserName.equals(CusName)){
+                                if (StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue() == null){
+                                    Toast.makeText(getApplicationContext(), "No Order Status", Toast.LENGTH_LONG).show();
+                                    break;
+                                    //deal with nullpointerexception
+                                }
+
                                 Order_Status = StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue().toString();
                             //set Order_Status to match the current logged in user
 
@@ -98,7 +120,7 @@ public class CustomerAllOrders extends AppCompatActivity {
 
 
 
-                            }
+
                         }
 
                     }
