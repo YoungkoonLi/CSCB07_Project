@@ -35,7 +35,7 @@ public class testPresenter(){
 
 
     @Test
-    public void testSignin_empty_email(){
+    public void testSignIn_empty_email(){
 
         String email = "";
         String password = "password";
@@ -194,7 +194,9 @@ public class testPresenter(){
 
         /*** Verifying order ***/
         InOrder order = inOrder(model, view, view);
-        order.verify(model).LogIn(email,password,Consumer<User> callback );
+        order.verify(model).LogIn(email,
+                password,
+                captor.capture());
         order.verify(view).NotFound();
         order.verify(view).displayMessage(message);
 
