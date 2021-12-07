@@ -1,18 +1,16 @@
 package com.example.utfresh;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Orders extends AppCompatActivity implements Serializable{
@@ -141,6 +138,17 @@ public class Orders extends AppCompatActivity implements Serializable{
         });
     }
 
+    public void Setting(View view) {
+        startActivity(new Intent(Orders.this, Setting.class));
+    }
+
+    public void Customer_home(View view) {
+        startActivity(new Intent(Orders.this, CustomerMain.class));
+    }
+
+    public void Customer_orders(View view) {
+        startActivity(new Intent(Orders.this, CustomerAllOrders.class));
+    }
 
 
 //    private void setOnClickListner() {

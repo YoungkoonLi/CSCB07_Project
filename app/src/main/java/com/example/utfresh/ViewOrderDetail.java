@@ -1,13 +1,7 @@
 package com.example.utfresh;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,13 +10,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -135,6 +131,18 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable, 
             Toast.makeText(this, "Updated successfully", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void Setting(View view) {
+        startActivity(new Intent(ViewOrderDetail.this, Setting.class));
+    }
+
+    public void Store_home(View view) {
+        startActivity(new Intent(ViewOrderDetail.this, StoreOwnerHome.class));
+    }
+
+    public void Store_orders(View view) {
+        startActivity(new Intent(ViewOrderDetail.this, AddNewProduct.class));
     }
 
 
