@@ -54,6 +54,10 @@ public class CustomerAllOrders extends AppCompatActivity {
         CusDatabase = FirebaseDatabase.getInstance().getReference().child("User " + CusId); //this is the data for current logged in user
         // set up variables
 
+        FindCurrentUser();
+        StoreData();
+        //Save StoreName and Order_Status in StoreOrder_list
+
         recyclerView = findViewById(R.id.CusAllOrdRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -61,15 +65,19 @@ public class CustomerAllOrders extends AppCompatActivity {
         recyclerView.setAdapter(CusAdapter);
         // the above is for activity layout
 
-        postListener = new ValueEventListener() {
+
+
+    }
+
+    private void FindCurrentUser() {
+        CusDatabase.addValueEventListener(postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@Nonnull DataSnapshot dataSnapshot) {
                 CusUser = dataSnapshot.getValue(User.class);    // now CusUser has current logged in user's info, and it is of type User
                 if (CusUser == null) {
                     Toast.makeText(getApplicationContext(), "No Current User", Toast.LENGTH_LONG).show();
                     //deal with nullpointerexception
-                }
-                else {
+                } else {
                     CusName = CusUser.name;
                 }
             }
@@ -78,13 +86,14 @@ public class CustomerAllOrders extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        };
-        CusDatabase.addValueEventListener(postListener);
-        CusDatabase.addValueEventListener(OrderListener);
+        });
+    }
+        //CusDatabase.addValueEventListener(postListener);
+        //OrderDatabase.addValueEventListener(OrderListener);
 
 
-
-        OrderListener = new ValueEventListener() {
+    private void StoreData() {
+        OrderDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange (@NonNull DataSnapshot dataSnapshot2){
                 for (DataSnapshot Store_snapshot : dataSnapshot2.getChildren()) {
@@ -132,10 +141,7 @@ public class CustomerAllOrders extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        };
-
-
-
+        });
     }
 
 
