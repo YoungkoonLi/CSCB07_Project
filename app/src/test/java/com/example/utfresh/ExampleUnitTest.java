@@ -326,7 +326,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void testSignin_no_selected_type() {
+    public void test_Signin_Error() {
 
         String email = "2@2.com";
         String password = "123456";
