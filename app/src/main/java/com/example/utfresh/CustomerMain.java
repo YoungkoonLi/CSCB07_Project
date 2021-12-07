@@ -76,7 +76,7 @@ public class CustomerMain extends AppCompatActivity {
                 for(DataSnapshot child : dataSnapshot.child("Users").getChildren()){
                     if(storeIDs.contains(child.getKey())){
                        storeNames.add((String)child.child("name").getValue());
-                       Log.e("fuck",(String)child.child("name").getValue());
+
                     }
                 }
                 callback.onCallback(storeNames, storeIDs);
