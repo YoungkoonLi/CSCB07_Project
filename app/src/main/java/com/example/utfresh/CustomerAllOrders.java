@@ -4,6 +4,7 @@ package com.example.utfresh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -46,24 +47,30 @@ public class CustomerAllOrders extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d("Tss tag", "Set layout complete!");
+        Toast.makeText(this, "Set layout complete", Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_all_orders);
-
         FBCusUser = FirebaseAuth.getInstance().getCurrentUser();
         OrderDatabase = FirebaseDatabase.getInstance().getReference("Order");
         CusId = FBCusUser.getUid();  //this is the current customer that logs in
         CusDatabase = FirebaseDatabase.getInstance().getReference().child("User " + CusId); //this is the data for current logged in user
+        //Toast.makeText(this, "firebase complete", Toast.LENGTH_SHORT).show();
         StoreOrder_list = new ArrayList<>();
         // set up variables
 
         FindCurrentUser();
+        //Toast.makeText(this, "found user", Toast.LENGTH_SHORT).show();
         StoreData();
+        //Toast.makeText(this, "Data stored", Toast.LENGTH_SHORT).show();
         //Save StoreName and Order_Status in StoreOrder_list
 
         recyclerView = findViewById(R.id.CusAllOrdRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         CusAdapter = new CusAllOrdAdapter(StoreOrder_list, this);
+        //Toast.makeText(this, "adpater created", Toast.LENGTH_SHORT).show();
         recyclerView.setAdapter(CusAdapter);
         // the above is for activity layout
 

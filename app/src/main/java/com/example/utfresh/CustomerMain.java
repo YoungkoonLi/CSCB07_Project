@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +30,12 @@ public class CustomerMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
+        Button orders = findViewById(R.id.orders);
+        orders.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivityOrders();
+            }
+        });
         storeIDs = new ArrayList<>();
         storeNames = new ArrayList<>();
         /* initialize adapter and get the recyclerview */
@@ -39,20 +46,16 @@ public class CustomerMain extends AppCompatActivity {
         //Set linear layout
         list.setLayoutManager(new LinearLayoutManager(this));
 
-
-        Button orders = findViewById(R.id.orders);
-        orders.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                openActivityOrders();
-            }
-        });
     }
 
     public void openActivityOrders(){
         Intent intent = new Intent(this, CustomerAllOrders.class);
+        Log.e("testmsg", "Intent created.");
+        //Toast.makeText(this, "Created Intent", Toast.LENGTH_SHORT).show();
         startActivity(intent);
+        Toast.makeText(this, "Started", Toast.LENGTH_SHORT).show();
+        Log.e("Furious", "ok!");
     }
-
 
     //Load store from firebase one by one
     protected void loadStore(ArrayList<String> storeNames, ArrayList<String> storeIDs){

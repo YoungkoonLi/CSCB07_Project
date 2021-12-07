@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/B07 Project/app/src/main/res/layout/activity_customer_all_orders.xml" value="0.16394927536231885" />
         <entry key="..\:/B07 Project/app/src/main/res/layout/activity_customer_main.xml" value="0.22395833333333334" />
+        <entry key="..\:/B07 Project/app/src/main/res/layout/item_cus_all_order.xml" value="0.1125" />
         <entry key="..\:/Giselle/university/CSCB07/b07 Project/app/src/main/res/layout/activity_add_new_product.xml" value="0.5" />
         <entry key="..\:/Giselle/university/CSCB07/b07 Project/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Giselle/university/CSCB07/b07 Project/app/src/main/res/layout/activity_product_list.xml" value="0.12685185185185185" />
@@ -35,7 +37,6 @@
         <entry key="..\:/Users/Intel/AndroidStudioProjects/CSCB07_Project/app/src/main/res/layout/product_list_row.xml" value="0.22" />
         <entry key="..\:/Users/Intel/AndroidStudioProjects/CSCB07_Project/app/src/main/res/layout/store_list_row.xml" value="0.1" />
         <entry key="..\:/Users/Pei'jia/AndroidStudioProjects/B07Project/app/src/main/res/layout/activity_customer_all_orders.xml" value="0.2128623188405797" />
-        <entry key="..\:/Users/Pei'jia/AndroidStudioProjects/B07Project/app/src/main/res/layout/activity_customer_main.xml" value="0.14427083333333332" />
         <entry key="..\:/Users/Pei'jia/AndroidStudioProjects/B07Project/app/src/main/res/layout/activity_product_list.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_customer_sign_up.xml" value="0.31637779238484515" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />

@@ -49,14 +49,14 @@
         android:backgroundTint="@color/background_button_color"
         android:drawableLeft="@drawable/ic_shopping_cart"
         android:text="@string/orders"
-        android:onClick="Customer_orders"
         android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.978" />
+        app:layout_constraintVertical_bias="0.978"/>
+        <!--         android:onClick="Customer_orders" -->
 
     <Button
         android:id="@+id/setting"
