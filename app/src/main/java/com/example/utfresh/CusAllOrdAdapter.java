@@ -17,9 +17,13 @@ public class CusAllOrdAdapter extends RecyclerView.Adapter<CusAllOrdAdapter.CusA
     private Context context;
     ArrayList<Order> list;
 
-    public CusAllOrdAdapter(ArrayList<Order> StoreOrder_list, Context context) {
-        list.addAll(StoreOrder_list);
+    public CusAllOrdAdapter(Context context) {
+        list = new ArrayList<>();
         this.context = context;
+    }
+
+    public void SetArrayList (ArrayList<Order> list){
+        this.list.addAll(list);
     }
 
     @NonNull
