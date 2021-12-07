@@ -23,10 +23,8 @@ public class CurrentOrder extends AppCompatActivity {
     CurrentOrderAdapter adapter;
 
     String CustomerId;                  //uid for current logged in user
-    DatabaseReference DataOriginRef;    //reference for the origin of everything on firebase
-    DatabaseReference DataSaveRef;      //reference for the specific store to save (upload) data
-    View view;                          //this is the parameter for sendOrder()
-    Order_Total order_total;            //this is the data (child) ready to save (upload)
+    DatabaseReference ref;      //reference for the specific store to save (upload) data
+    OrderTotal orderTotal;            //this is the data (child) ready to save (upload)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,33 +35,21 @@ public class CurrentOrder extends AppCompatActivity {
         categories = new ArrayList<>();
         quantities = new ArrayList<>();
         loadData();
-        orderList = findViewById(R.id.customer_product_list);
+        orderList = findViewById(R.id.current_order_list);
         adapter = new CurrentOrderAdapter(this);
         orderList.setAdapter(adapter);
         orderList.setLayoutManager(new LinearLayoutManager(this));
 
         //below sets up values for variables
-        DataOriginRef = FirebaseDatabase.getInstance().getReference();
-        DataSaveRef = DataOriginRef.child("Orders").child(id);
+        ref = FirebaseDatabase.getInstance().getReference().child("Orders").child(id);
         CustomerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //below is for the SEND ORDER button
         Button Send_Order = findViewById(R.id.SendOrder);
         Send_Order.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-
-
-
-
-
-
                 //view need to be set!
-
-
-
-
-
-                sendOrder(view);
+                sendOrder();
             }
         });
     }
@@ -87,7 +73,9 @@ public class CurrentOrder extends AppCompatActivity {
         }
     }
 
-    public void sendOrder(View view) {
+    public void sendOrder() {
+        ref.push();
+
 
         //the code should be like ref.child("students").child("s1").setValue(student);*
 
@@ -97,18 +85,18 @@ public class CurrentOrder extends AppCompatActivity {
 
 
 
-        DataSaveRef.setValue(order_total);
+        //ref.setValue(orderTotal);
         //order_total need to store values and set!
-
+        finish();
     }
 
-    public class Order_Total {
+    public class OrderTotal {
         //this class is for each order child (eg order1, order2 are both of class Order_Total) under a store
 
         ArrayList<OrderData> Item_List;         //Item_List child under each order under each store
         Order OrderInfo;                        //OrderInfo child under each order under each store
 
-        public Order_Total(Order orderInfo) {
+        public OrderTotal(Order orderInfo) {
             Item_List = new ArrayList<>();
             this.OrderInfo = orderInfo;
         }

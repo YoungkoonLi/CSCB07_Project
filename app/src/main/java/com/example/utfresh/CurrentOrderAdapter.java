@@ -28,7 +28,7 @@ public class CurrentOrderAdapter extends RecyclerView.Adapter<CurrentOrderAdapte
     @Override
     public CurrentOrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        return new CurrentOrderViewHolder(inflater.inflate(R.layout.product_list_row, parent, false));
+        return new CurrentOrderViewHolder(inflater.inflate(R.layout.current_order_view, parent, false));
     }
 
     @Override
