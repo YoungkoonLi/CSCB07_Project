@@ -32,14 +32,13 @@ public class CustomerProductList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_product_list);
-        //load Data here.
+
         names = new ArrayList<>();
         prices = new ArrayList<>();
         categories = new ArrayList<>();
+        //load Data here.
         loadData();
-        //Toast.makeText(this,id + " | " + owner, Toast.LENGTH_SHORT).show();
         initialize();
-        //Toast.makeText(this,names.toString(), Toast.LENGTH_SHORT).show();
     }
 
     /*This method initializes the recyclerView and its corresponding adapter here.*/
@@ -75,6 +74,7 @@ public class CustomerProductList extends AppCompatActivity {
         });
     }
 
+    /*Onclick listeners for buttons*/
     public void Setting(View view) {
         startActivity(new Intent(CustomerProductList.this, Setting.class));
     }
@@ -85,6 +85,16 @@ public class CustomerProductList extends AppCompatActivity {
 
     public void Customer_orders(View view) {
         startActivity(new Intent(CustomerProductList.this, CustomerAllOrders.class));
+    }
+
+    public void viewCart(View view){
+        Intent intent = new Intent(this, CurrentOrder.class);
+        intent.putExtra("store_name", owner);
+        intent.putExtra("store_id", id);
+        intent.putExtra("product_names", names);
+        intent.putExtra("prices", prices);
+        intent.putExtra("categories", categories);
+        startActivity(intent);
     }
 
     //Custom callback for firebase and other related implementations
@@ -111,4 +121,7 @@ public class CustomerProductList extends AppCompatActivity {
         };
         ref.addValueEventListener(listener);
     }
+
+
+
 }

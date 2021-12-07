@@ -24,7 +24,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     ArrayList<String> names;
     ArrayList<String> prices;
     ArrayList<String> categories;
-    ArrayList<String> quantities;
+    static int[] quantities;
     public ProductListAdapter(Context context){
         this.context = context;
         //Initialize to empty list. Awaiting data from firebase.
@@ -62,17 +62,17 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         this.names.addAll(names);
         this.prices.addAll(prices);
         this.categories.addAll(categories);
-        this.quantities = new ArrayList<>(names.size());
+        this.quantities = new int[names.size()];
         //zero out the list
-        for(int i = 0; i < quantities.size(); i++){
-            quantities.set(i, "0");
+        for(int i = 0; i < quantities.length; i++){
+            quantities[i] = 0;
         }
         notifyDataSetChanged();
     }
 
     public void addToCart(String name){
         int index = names.indexOf(name);
-        quantities.set(index, quantities.get(index) + 1);
+        quantities[index]++;
         Toast.makeText(context, "Added 1 " + name +"to shopping cart", Toast.LENGTH_SHORT);
     }
     public class ProductViewHolder extends RecyclerView.ViewHolder{

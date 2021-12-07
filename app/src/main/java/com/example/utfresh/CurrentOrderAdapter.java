@@ -40,7 +40,6 @@ public class CurrentOrderAdapter extends RecyclerView.Adapter<CurrentOrderAdapte
 
     @Override
     public int getItemCount() {
-        Log.e("text", names.size() + "");
         return names.size();
     }
 

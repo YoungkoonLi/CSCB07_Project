@@ -25,7 +25,7 @@
                 android:id="@+id/product_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.4"
+                android:layout_weight="20"
                 android:gravity="center"
                 android:inputType="textMultiLine"
                 android:text="Product Name"
@@ -36,7 +36,7 @@
                 android:id="@+id/product_category"
                 android:layout_width="75dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
+                android:layout_weight="20"
                 android:gravity="center"
                 android:text="Category" />
 
@@ -44,17 +44,27 @@
                 android:id="@+id/product_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
+                android:layout_weight="20"
                 android:gravity="center"
                 android:text="Price"
                 android:textStyle="italic" />
 
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:editable="true"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Quantity" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/button_wrapper"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.7"
                 android:layout_gravity="center"
-                android:id="@+id/button_wrapper">
+                android:layout_weight="40">
 
                 <Button
                     android:id="@+id/add_cart"
