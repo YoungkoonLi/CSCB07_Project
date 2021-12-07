@@ -53,10 +53,10 @@ public class CustomerAllOrders extends AppCompatActivity {
         // set up variables
 
         recyclerView = findViewById(R.id.CusAllOrdRecyclerView);
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        CusAdapter = new CusAllOrdAdapter(StoreOrder_list, this);
+        recyclerView.setAdapter(CusAdapter);
         // the above is for activity layout
 
         postListener = new ValueEventListener() {
@@ -67,7 +67,9 @@ public class CustomerAllOrders extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "No Current User", Toast.LENGTH_LONG).show();
                     //deal with nullpointerexception
                 }
-                CusName = CusUser.name;
+                else {
+                    CusName = CusUser.name;
+                }
             }
 
             @Override
@@ -76,7 +78,7 @@ public class CustomerAllOrders extends AppCompatActivity {
             }
         };
         CusDatabase.addValueEventListener(postListener);
-
+        CusDatabase.addValueEventListener(OrderListener);
 
 
 
@@ -89,29 +91,28 @@ public class CustomerAllOrders extends AppCompatActivity {
                         //this loops each Store to get each StoreOrder
 
                         if (StoreOrder_snapshot.child("OrderInfo").getValue() == null){
-                            Toast.makeText(getApplicationContext(), "No Order Yet", Toast.LENGTH_LONG).show();
-                            break;
+                            Toast.makeText(getApplicationContext(), "No Order Yet", Toast.LENGTH_SHORT).show();
+                            continue;
                         }
-                        if (StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue() == null) {
-                            Toast.makeText(getApplicationContext(), "No Customer Name", Toast.LENGTH_LONG).show();
-                            break;
+                        else if (StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue() == null) {
+                            Toast.makeText(getApplicationContext(), "No Customer Name", Toast.LENGTH_SHORT).show();
+                            continue;
                         }
-                        if (StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue() == null) {
-                            Toast.makeText(getApplicationContext(), "No Store Name", Toast.LENGTH_LONG).show();
-                            break;
+                        else if (StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue() == null) {
+                            Toast.makeText(getApplicationContext(), "No Store Name", Toast.LENGTH_SHORT).show();
+                            continue;
                             //deal with nullpointerexception
                         }
 
                         LoopUserName = StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue().toString();
                         StoreName = StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue().toString();
 
-                        if(LoopUserName.equals(CusName)){
-                            if (StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue() == null){
-                                Toast.makeText(getApplicationContext(), "No Order Status", Toast.LENGTH_LONG).show();
-                                break;
+                        if(LoopUserName.equals(CusName)) {
+                            if (StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue() == null) {
+                                Toast.makeText(getApplicationContext(), "No Order Status", Toast.LENGTH_SHORT).show();
+                                continue;
                                 //deal with nullpointerexception
                             }
-
                             Order_Status = StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue().toString();
                             //set Order_Status to match the current logged in user
 
@@ -131,8 +132,7 @@ public class CustomerAllOrders extends AppCompatActivity {
             }
         };
 
-        CusAdapter = new CusAllOrdAdapter(StoreOrder_list, this);
-        recyclerView.setAdapter(CusAdapter);
+
 
     }
 
