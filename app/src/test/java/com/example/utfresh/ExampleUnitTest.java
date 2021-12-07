@@ -49,8 +49,8 @@ public class ExampleUnitTest {
 //        view.displayMessage("here");
         verify(model).LogIn(email, password, captor.capture());
         callback.accept(user);
-//        when(mockService.doAction(any(Request.class), any(Callback.class))).thenAnswer(
-//                new Answer<Object>() {
+//        when(mockService.Login(email, password, Consumer<User>(Callback.class))).thenAnswer(
+//                new Consumer<User>() {
 //                    Object answer(InvocationOnMock invocation) {
 //                        ((Callback<Response>) invocation.getArguments()[1]).reply(x);
 //                        return null;
@@ -103,7 +103,7 @@ public class ExampleUnitTest {
         assertEquals(captor.getValue(), message);
 
         /*** Verifying order ***/
-        InOrder order = inOrder(view, view);
+        InOrder order = inOrder(view);
         order.verify(view).displayMessage(message);
 
     }
@@ -137,7 +137,7 @@ public class ExampleUnitTest {
         assertEquals(captor.getValue(), message);
 
         /*** Verifying order ***/
-        InOrder order = inOrder(view, view);
+        InOrder order = inOrder(view);
 //        order.verify(view).Patterns.EMAIL_ADDRESS.matcher(email).matches();
         order.verify(view).displayMessage(message);
 
@@ -173,7 +173,7 @@ public class ExampleUnitTest {
         assertEquals(captor.getValue(), message);
 
         /*** Verifying order ***/
-        InOrder order = inOrder(view, view);
+        InOrder order = inOrder(view);
 //        order.verify(view).pass.length();
         order.verify(view).displayMessage(message);
 
@@ -208,7 +208,7 @@ public class ExampleUnitTest {
         assertEquals(captor.getValue(), message);
 
         /*** Verifying order ***/
-        InOrder order = inOrder(model, view, view);
+        InOrder order = inOrder(view, view);
 //        order.verify(model).LogIn(email,
 //                password,
 //                captor.capture());
@@ -246,7 +246,7 @@ public class ExampleUnitTest {
         assertEquals(captor.getValue(), message);
 
         /*** Verifying order ***/
-        InOrder order = inOrder(model, view, view);
+        InOrder order = inOrder(view, view);
 //        order.verify(model).LogIn(email, password, captor.capture());
         order.verify(view).toCustomer();
         order.verify(view).displayMessage(message);
@@ -282,7 +282,7 @@ public class ExampleUnitTest {
         assertEquals(captor.getValue(), message);
 
         /*** Verifying order ***/
-        InOrder order = inOrder(model, view, view);
+        InOrder order = inOrder(view, view);
 //        order.verify(model).LogIn(email, password, captor.capture());
         order.verify(view).toStore();
         order.verify(view).displayMessage(message);
@@ -319,9 +319,45 @@ public class ExampleUnitTest {
         assertEquals(captor.getValue(), message1);
 
         /*** Verifying order ***/
-        InOrder order = inOrder(model, view);
+        InOrder order = inOrder(view);
 //        order.verify(model).LogIn(email, password, captor.capture());
         order.verify(view).displayMessage(message1);
+
+    }
+
+    @Test
+    public void testSignin_no_selected_type() {
+
+        String email = "2@2.com";
+        String password = "123456";
+        boolean Cus = false;
+        boolean Store = true;
+ //       String message1 = "Please select login as Customer or StoreOwner!";
+        String message2 = "Please select correct user type!";
+        User user = new User();
+        Consumer<User> callback = captor.getValue();
+
+//        /** stubbing */
+//        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+//        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+//        verify(model).LogIn(email, password, captor.capture());
+//        callback.accept(user);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email, password, Cus, Store);
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message2);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message2);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(view);
+//        order.verify(model).LogIn(email, password, captor.capture());
+        order.verify(view).displayMessage(message2);
 
     }
 }
