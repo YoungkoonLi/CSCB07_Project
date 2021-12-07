@@ -29,8 +29,8 @@ import java.util.ArrayList;
 public class CustomerAllOrders extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    DatabaseReference OrderDatabase;
-    DatabaseReference CusDatabase;
+    DatabaseReference DatabaseOrigin;
+    DataSnapshot LoopDataSnapshot;
     CusAllOrdAdapter CusAdapter;
     FirebaseUser FBCusUser;   //current logged in user
     String CusId;       //Uid for current logged in user
@@ -47,24 +47,22 @@ public class CustomerAllOrders extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.d("Tss tag", "Set layout complete!");
-        Toast.makeText(this, "Set layout complete", Toast.LENGTH_SHORT).show();
+        //Log.d("Tss tag", "Set layout complete!");
+        //Toast.makeText(this, "Set layout complete", Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_all_orders);
         FBCusUser = FirebaseAuth.getInstance().getCurrentUser();
-        OrderDatabase = FirebaseDatabase.getInstance().getReference("Order");
         CusId = FBCusUser.getUid();  //this is the current customer that logs in
-        CusDatabase = FirebaseDatabase.getInstance().getReference().child("User " + CusId); //this is the data for current logged in user
         //Toast.makeText(this, "firebase complete", Toast.LENGTH_SHORT).show();
+        DatabaseOrigin = FirebaseDatabase.getInstance().getReference();
         StoreOrder_list = new ArrayList<>();
         // set up variables
 
-        //FindCurrentUser();
-        //Toast.makeText(this, "found user", Toast.LENGTH_SHORT).show();
-        //StoreData();
-        //Toast.makeText(this, "Data stored", Toast.LENGTH_SHORT).show();
-        //Save StoreName and Order_Status in StoreOrder_list
 
+        //Toast.makeText(this, "found user", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Data stored", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, "Set Variable Complete", Toast.LENGTH_SHORT).show();
 
         recyclerView = findViewById(R.id.CusAllOrdRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -72,6 +70,7 @@ public class CustomerAllOrders extends AppCompatActivity {
 
         CusAdapter = new CusAllOrdAdapter(this);
         //Toast.makeText(this, "adpater created", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Initialize CusAdapter Complete", Toast.LENGTH_SHORT).show();
 
         readData(new FirebaseCallBack() {
             @Override
@@ -80,6 +79,9 @@ public class CustomerAllOrders extends AppCompatActivity {
                 //Save Store Name and Order_Status in ArrayList in CusAdapter
             }
         });
+
+        //Toast.makeText(this, "ReadData Complete", Toast.LENGTH_SHORT).show();
+
         recyclerView.setAdapter(CusAdapter);
         // the above is for activity layout
 
@@ -121,19 +123,27 @@ public class CustomerAllOrders extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     private void readData(FirebaseCallBack firebaseCallBack) {
         ValueEventListener readDataListener = new ValueEventListener() {
             @Override
             public void onDataChange(@Nonnull DataSnapshot dataSnapshot) {
-                CusUser = dataSnapshot.getValue(User.class);    // now CusUser has current logged in user's info, and it is of type User
+                LoopDataSnapshot = dataSnapshot.child("Users").child(CusId);
+                CusUser = LoopDataSnapshot.getValue(User.class);
+                // now CusUser has current logged in user's info, and it is of type User
+                //Toast.makeText(getApplicationContext(), "Curr Uid:      " + CusId, Toast.LENGTH_LONG).show();
                 if (CusUser == null) {
-                    Toast.makeText(getApplicationContext(), "No Current User", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "No Current User", Toast.LENGTH_LONG).show();
                     //deal with nullpointerexception
                 } else {
                     CusName = CusUser.name;
                 }
+                CusAdapter.notifyDataSetChanged();
 
-                for (DataSnapshot Store_snapshot : dataSnapshot.getChildren()) {
+                //Toast.makeText(getApplicationContext(), "Curr Name is" + CusName, Toast.LENGTH_LONG).show();
+
+                for (DataSnapshot Store_snapshot : dataSnapshot.child("Order").getChildren()) {
                     //this loops child "Order" to get each Store
                     for (DataSnapshot StoreOrder_snapshot: Store_snapshot.getChildren()){
                         //this loops each Store to get each StoreOrder
@@ -171,6 +181,9 @@ public class CustomerAllOrders extends AppCompatActivity {
                         }
                     }
                 }
+                CusAdapter.notifyDataSetChanged();
+
+                firebaseCallBack.onCallback(StoreOrder_list);
             }
 
             @Override
@@ -178,116 +191,12 @@ public class CustomerAllOrders extends AppCompatActivity {
 
             }
         };
+
+        DatabaseOrigin.addValueEventListener(readDataListener);
     }
 
     private interface FirebaseCallBack{
         void onCallback(ArrayList<Order> list);
     }
 
-
-    private void FindCurrentUser() {
-        CusDatabase.addValueEventListener(postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@Nonnull DataSnapshot dataSnapshot) {
-                CusUser = dataSnapshot.getValue(User.class);    // now CusUser has current logged in user's info, and it is of type User
-                if (CusUser == null) {
-                    Toast.makeText(getApplicationContext(), "No Current User", Toast.LENGTH_LONG).show();
-                    //deal with nullpointerexception
-                } else {
-                    CusName = CusUser.name;
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-        //CusDatabase.addValueEventListener(postListener);
-        //OrderDatabase.addValueEventListener(OrderListener);
-
-
-    private void StoreData() {
-        OrderDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange (@NonNull DataSnapshot dataSnapshot2){
-                for (DataSnapshot Store_snapshot : dataSnapshot2.getChildren()) {
-                    //this loops child "Order" to get each Store
-                    for (DataSnapshot StoreOrder_snapshot: Store_snapshot.getChildren()){
-                        //this loops each Store to get each StoreOrder
-
-                        if (StoreOrder_snapshot.child("OrderInfo").getValue() == null){
-                            Toast.makeText(getApplicationContext(), "No Order Yet", Toast.LENGTH_SHORT).show();
-                            continue;
-                        }
-                        else if (StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue() == null) {
-                            Toast.makeText(getApplicationContext(), "No Customer Name", Toast.LENGTH_SHORT).show();
-                            continue;
-                        }
-                        else if (StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue() == null) {
-                            Toast.makeText(getApplicationContext(), "No Store Name", Toast.LENGTH_SHORT).show();
-                            continue;
-                            //deal with nullpointerexception
-                        }
-
-                        LoopUserName = StoreOrder_snapshot.child("OrderInfo").child("Customer_Name").getValue().toString();
-                        StoreName = StoreOrder_snapshot.child("OrderInfo").child("Store_Name").getValue().toString();
-
-                        if(LoopUserName.equals(CusName)) {
-                            if (StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue() == null) {
-                                Toast.makeText(getApplicationContext(), "No Order Status", Toast.LENGTH_SHORT).show();
-                                continue;
-                                //deal with nullpointerexception
-                            }
-                            Order_Status = StoreOrder_snapshot.child("OrderInfo").child("Order_Status").getValue().toString();
-                            //set Order_Status to match the current logged in user
-
-                            Order OrdLoop = new Order("", StoreName);
-                            OrdLoop.SetOrderStatus(Order_Status);
-                            StoreOrder_list.add(OrdLoop);
-                            //save StoreName and Order_Status in a ArrayList
-                        }
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-
-
-
-
-
-
-
-/*    loadData();
-
-    private void loadData() {
-        databaseReference.child(CusId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Data> data_set = new ArrayList<>();
-                for(DataSnapshot value : snapshot.getChildren()){
-                    Data data = value.getValue(Data.class);
-                    data_set.add(data);
-                }
-                adapter.setItems(data_set);
-                adapter.notifyDataSetChanged();
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }*/
 }
