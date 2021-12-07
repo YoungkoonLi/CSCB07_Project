@@ -71,6 +71,7 @@ public class testPresenter() {
         boolean Cus = true;
         boolean Store = false;
         String message = "password is required";
+        User user = new User();
         Consumer<User> callback = captor.getValue();
 
         /** stubbing */
@@ -104,6 +105,7 @@ public class testPresenter() {
         boolean Cus = true;
         boolean Store = false;
         String message = "Please provide valid email!";
+        User user = new User();
         Consumer<User> callback = captor.getValue();
 
         /** stubbing */
@@ -139,6 +141,7 @@ public class testPresenter() {
         boolean Cus = true;
         boolean Store = false;
         String message = "Password should have at least 6 characters!";
+        User user = new User();
         Consumer<User> callback = captor.getValue();
 
         /** stubbing */
@@ -173,6 +176,7 @@ public class testPresenter() {
         boolean Cus = true;
         boolean Store = false;
         String message = "Error!";
+        User user = new User();
         Consumer<User> callback = captor.getValue();
 
         /** stubbing */
@@ -210,6 +214,7 @@ public class testPresenter() {
         boolean Cus = true;
         boolean Store = false;
         String message = "customer logged successfully!";
+        User user = new User();
         Consumer<User> callback = captor.getValue();
 
         /** stubbing */
@@ -245,6 +250,7 @@ public class testPresenter() {
         boolean Cus = false;
         boolean Store = true;
         String message = "store logged successfully!";
+        User user = new User();
         Consumer<User> callback = captor.getValue();
 
         /** stubbing */
@@ -281,6 +287,7 @@ public class testPresenter() {
         boolean Store = false;
         String message1 = "Please select login as Customer or StoreOwner!";
         String message2 = "Please select correct user type!";
+        User user = new User();
         Consumer<User> callback = captor.getValue();
 
         /** stubbing */
