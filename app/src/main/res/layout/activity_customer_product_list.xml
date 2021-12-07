@@ -7,9 +7,9 @@
     tools:context=".CustomerProductList">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/customer_product_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/customer_product_list"/>
+        android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -28,8 +28,8 @@
         android:layout_height="45dp"
         android:backgroundTint="@color/background_button_color"
         android:drawableLeft="@drawable/ic_home"
-        android:text="@string/home"
         android:onClick="Customer_home"
+        android:text="@string/home"
         android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/setting"
@@ -44,8 +44,8 @@
         android:layout_height="45dp"
         android:backgroundTint="@color/background_button_color"
         android:drawableLeft="@drawable/ic_shopping_cart"
-        android:text="@string/orders"
         android:onClick="Customer_orders"
+        android:text="@string/orders"
         android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,5 +69,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.978" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="115dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_shopping_cart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

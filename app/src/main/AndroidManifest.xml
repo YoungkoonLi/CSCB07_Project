@@ -10,12 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UTFresh">
         <activity
+            android:name=".CurrentOrder"
+            android:exported="false" />
+        <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".CustomerProductList"
             android:exported="false"
-            android:parentActivityName=".CustomerMain"/>
+            android:parentActivityName=".CustomerMain" />
         <activity
             android:name=".CustomerAllOrders"
             android:exported="false" />
