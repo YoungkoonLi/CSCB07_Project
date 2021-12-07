@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,7 +38,21 @@ public class CustomerMain extends AppCompatActivity {
         list.setAdapter(storeAdapter);
         //Set linear layout
         list.setLayoutManager(new LinearLayoutManager(this));
+
+
+        Button orders = findViewById(R.id.orders);
+        orders.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivityOrders();
+            }
+        });
     }
+
+    public void openActivityOrders(){
+        Intent intent = new Intent(this, CustomerAllOrders.class);
+        startActivity(intent);
+    }
+
 
     //Load store from firebase one by one
     protected void loadStore(ArrayList<String> storeNames, ArrayList<String> storeIDs){
@@ -55,9 +70,12 @@ public class CustomerMain extends AppCompatActivity {
         startActivity(new Intent(CustomerMain.this, Setting.class));
     }
 
-    public void Customer_orders(View view) {
-        startActivity(new Intent(CustomerMain.this, CustomerAllOrders.class));
-    }
+    //public void Customer_orders(View view) {
+        //startActivity(new Intent(CustomerMain.this, CustomerAllOrders.class));
+    //}
+
+
+
 
 
     //Custom callback for firebase and other related implementations

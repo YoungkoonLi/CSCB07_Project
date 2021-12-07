@@ -5,6 +5,7 @@ package com.example.utfresh;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -52,6 +53,7 @@ public class CustomerAllOrders extends AppCompatActivity {
         OrderDatabase = FirebaseDatabase.getInstance().getReference("Order");
         CusId = FBCusUser.getUid();  //this is the current customer that logs in
         CusDatabase = FirebaseDatabase.getInstance().getReference().child("User " + CusId); //this is the data for current logged in user
+        StoreOrder_list = new ArrayList<>();
         // set up variables
 
         FindCurrentUser();
@@ -65,9 +67,46 @@ public class CustomerAllOrders extends AppCompatActivity {
         recyclerView.setAdapter(CusAdapter);
         // the above is for activity layout
 
+        //the below is for the three buttons at the bottom of screen layout
+        Button home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Customer_home();
+            }
+        });
 
+        Button orders = findViewById(R.id.orders);
+        orders.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivityOrders();
+            }
+        });
+
+        Button setting = findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                openActivitySetting();
+            }
+        });
+    }
+
+    public void Customer_home() {
+        startActivity(new Intent(this, CustomerMain.class));
 
     }
+
+
+    public void openActivityOrders(){
+        Intent intent = new Intent(this, CustomerAllOrders.class);
+        startActivity(intent);
+    }
+
+    public void openActivitySetting(){
+        Intent intent = new Intent(this, Setting.class);
+        startActivity(intent);
+    }
+
+
 
     private void FindCurrentUser() {
         CusDatabase.addValueEventListener(postListener = new ValueEventListener() {
@@ -144,13 +183,8 @@ public class CustomerAllOrders extends AppCompatActivity {
         });
     }
 
-    public void Setting(View view) {
-        startActivity(new Intent(CustomerAllOrders.this, Setting.class));
-    }
 
-    public void Customer_home(View view) {
-        startActivity(new Intent(CustomerAllOrders.this, CustomerMain.class));
-    }
+
 
 
 
