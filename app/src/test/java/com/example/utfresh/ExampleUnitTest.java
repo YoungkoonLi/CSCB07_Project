@@ -49,6 +49,13 @@ public class ExampleUnitTest {
 //        view.displayMessage("here");
         verify(model).LogIn(email, password, captor.capture());
         callback.accept(user);
+//        when(mockService.doAction(any(Request.class), any(Callback.class))).thenAnswer(
+//                new Answer<Object>() {
+//                    Object answer(InvocationOnMock invocation) {
+//                        ((Callback<Response>) invocation.getArguments()[1]).reply(x);
+//                        return null;
+//                    }
+//                });
 
         Presenter presenter = new Presenter(model, view);
         presenter.SignIn(email, password, Cus, Store);
