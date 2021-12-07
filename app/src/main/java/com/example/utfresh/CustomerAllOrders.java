@@ -62,7 +62,7 @@ public class CustomerAllOrders extends AppCompatActivity {
         //Toast.makeText(this, "found user", Toast.LENGTH_SHORT).show();
         //Toast.makeText(this, "Data stored", Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this, "Set Variable Complete", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Set Variable Complete", Toast.LENGTH_SHORT).show();
 
         recyclerView = findViewById(R.id.CusAllOrdRecyclerView);
         recyclerView.setHasFixedSize(true);
