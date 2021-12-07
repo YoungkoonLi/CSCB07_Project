@@ -144,6 +144,15 @@ public class CustomerAllOrders extends AppCompatActivity {
         });
     }
 
+    public void Setting(View view) {
+        startActivity(new Intent(CustomerAllOrders.this, Setting.class));
+    }
+
+    public void Customer_home(View view) {
+        startActivity(new Intent(CustomerAllOrders.this, CustomerMain.class));
+    }
+
+
 
 
 

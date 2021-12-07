@@ -44,7 +44,7 @@
         android:layout_height="45dp"
         android:backgroundTint="@color/background_button_color"
         android:drawableLeft="@drawable/ic_home"
-        android:onClick="Custermer_home"
+        android:onClick="Customer_home"
         android:text="@string/home"
         android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
