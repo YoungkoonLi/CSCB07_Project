@@ -81,7 +81,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             int index = names.indexOf(name);
             if (index >= 0) {
                 quantities.set(index, quantities.get(index) + Integer.valueOf(quantity));
-                Toast.makeText(context, "Added " + Integer.valueOf(quantity) + name + " to shopping cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Added " + Integer.valueOf(quantity) + " " + name + " to shopping cart", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "No such product!", Toast.LENGTH_SHORT).show();
             }

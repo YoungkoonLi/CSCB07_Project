@@ -100,10 +100,6 @@ public class CurrentOrder extends AppCompatActivity {
         DataSaveRef.setValue(order_total);
         //order_total need to store values and set!
 
-
-
-
-
     }
 
     public class Order_Total {
