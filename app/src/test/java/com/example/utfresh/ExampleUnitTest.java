@@ -65,7 +65,6 @@ public class testPresenter(){
 
         /*** Verifying order ***/
         InOrder order = inOrder(view, view);
-        order.verify(view).TextUtils.isEmpty(email);
         order.verify(view).displayMessage(message2);
 
     }
