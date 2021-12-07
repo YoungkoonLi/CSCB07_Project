@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crashlytics.buildtools.reloc.javax.annotation.Nonnull;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -61,7 +63,7 @@ public class CustomerAllOrders extends AppCompatActivity {
 
         postListener = new ValueEventListener() {
             @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+            public void onDataChange(@Nonnull DataSnapshot dataSnapshot) {
                 CusUser = dataSnapshot.getValue(User.class);    // now CusUser has current logged in user's info, and it is of type User
                 if (CusUser == null) {
                     Toast.makeText(getApplicationContext(), "No Current User", Toast.LENGTH_LONG).show();
@@ -84,10 +86,10 @@ public class CustomerAllOrders extends AppCompatActivity {
 
         OrderListener = new ValueEventListener() {
             @Override
-            public void onDataChange (com.google.firebase.database.DataSnapshot dataSnapshot2){
-                for (com.google.firebase.database.DataSnapshot Store_snapshot : dataSnapshot2.getChildren()) {
+            public void onDataChange (@NonNull DataSnapshot dataSnapshot2){
+                for (DataSnapshot Store_snapshot : dataSnapshot2.getChildren()) {
                     //this loops child "Order" to get each Store
-                    for (com.google.firebase.database.DataSnapshot StoreOrder_snapshot: Store_snapshot.getChildren()){
+                    for (DataSnapshot StoreOrder_snapshot: Store_snapshot.getChildren()){
                         //this loops each Store to get each StoreOrder
 
                         if (StoreOrder_snapshot.child("OrderInfo").getValue() == null){
