@@ -12,7 +12,10 @@ import android.widget.TextView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InOrder;
+
+import java.util.function.Consumer;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -27,6 +30,9 @@ public class testPresenter(){
     @Mock
     Model model;
 
+    @Captor
+    ArgumentCaptor<Consumer<User>> captor;
+
 
     @Test
     public void testSignin_empty_email(){
@@ -35,13 +41,16 @@ public class testPresenter(){
         String password = "password";
         boolean Cus = true;
         boolean Store = true;
+        User user = new User();
         String message1 = "Error!";
         String message2 = "email is required!";
+        Consumer<User> callback = captor.getValue();
 
         /** stubbing */
         when(view.editEmail.getText().toString().trim()).thenReturn(email);
         when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        when(model.LogIn(email,password,Consumer<User> callback )).thenCallback.accept(customer);
+        verify(model).LogIn(email, password, captor.capture());
+        callback.accept(user);
 
         Presenter presenter = new Presenter(model, view);
         presenter.SignIn(email,password, Cus, Store);

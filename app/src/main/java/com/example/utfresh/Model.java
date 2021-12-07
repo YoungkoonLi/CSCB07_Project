@@ -17,7 +17,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.function.Consumer;
 
 public class Model implements Contract.Model{
-    static Model instance;
     DatabaseReference users;
     FirebaseAuth fAuth;
 
