@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
         progressBar.setVisibility(View.GONE);
     }
 
+
     public void customer_main(View view) {
         startActivity(new Intent(MainActivity.this, CustomerMain.class));
     }
