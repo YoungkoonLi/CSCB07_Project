@@ -198,18 +198,4 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
         textView.setText(message);
     }
 
-
-    // test
-/*    public void displayMessage(String message){
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(message);
-    }
-
-    public String getUsername(){
-        EditText editText = findViewById(R.id.editText);
-        return editText.getText().toString();
-    }
-    public void handleClick(View view){
-        presenter.checkUsername();
-    }*/
 }

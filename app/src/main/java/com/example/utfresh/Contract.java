@@ -15,6 +15,7 @@ public interface Contract {
         public void toStore();
         public void OnError();
         public void NotFound();
+        public void displayMessage();
     }
     public interface Presenter{
         public void SignIn(String email, String password, boolean isCus, boolean isStore);
