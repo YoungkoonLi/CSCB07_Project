@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InOrder;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.function.Consumer;
@@ -22,8 +23,10 @@ import java.util.function.Consumer;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleUnitTest {
+    @Mock
     MainActivity view;
 
+    @Mock
     Model model;
 
     @Captor
@@ -183,39 +186,39 @@ public class ExampleUnitTest {
 //
 //    }
 
-    @Test
-    public void testSignin_user_NotFound() {
-
-        String email = "user@user.com";
-        String password = "password";
-        boolean Cus = true;
-        boolean Store = false;
-        String message = "Error!";
-        User user = null;
-
+//    @Test
+//    public void testSignin_user_NotFound() {
+//
+//        String email = "user@user.com";
+//        String password = "password";
+//        boolean Cus = true;
+//        boolean Store = false;
+//        String message = "Error!";
+//        User user = null;
+//
+////        Presenter presenter = new Presenter(model, view);
+////        presenter.SignIn(email, password, Cus, Store);
+//
+////        Consumer<User> callback = captor.getValue();
+//
+////        ArgumentCaptor<Consumer<User>> argument = ArgumentCaptor.forClass(Consumer<User>.class);
+////        verify(view).doSomething(argument.capture());
+////        assertEquals("John", argument.getValue().getName());
+//
+//        /** stubbing */
+////        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+////        when(view.editPassword.getText().toString().trim()).thenReturn(password);
 //        Presenter presenter = new Presenter(model, view);
 //        presenter.SignIn(email, password, Cus, Store);
-
+//        verify(model).LogIn(email, password, captor.capture());
 //        Consumer<User> callback = captor.getValue();
-
-//        ArgumentCaptor<Consumer<User>> argument = ArgumentCaptor.forClass(Consumer<User>.class);
-//        verify(view).doSomething(argument.capture());
-//        assertEquals("John", argument.getValue().getName());
-
-        /** stubbing */
-//        when(view.editEmail.getText().toString().trim()).thenReturn(email);
-//        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        Presenter presenter = new Presenter(model, view);
-        presenter.SignIn(email, password, Cus, Store);
-        verify(model).LogIn(email, password, captor.capture());
-        Consumer<User> callback = captor.getValue();
-        callback.accept(user);
-
-//        Presenter presenter = new Presenter(model, view);
-//        presenter.SignIn(email, password, Cus, Store);
-
-        verify(view, times(1)).NotFound();
-
+//        callback.accept(user);
+//
+////        Presenter presenter = new Presenter(model, view);
+////        presenter.SignIn(email, password, Cus, Store);
+//
+////        verify(view, times(1)).NotFound();
+//
 //        /** verifying displayMessage with specific string value */
 //        verify(view).displayMessage(message);
 //
@@ -231,24 +234,26 @@ public class ExampleUnitTest {
 ////                captor.capture());
 //        order.verify(view).NotFound();
 //        order.verify(view).displayMessage(message);
-
-    }
+//
+//    }
 
     @Test
     public void testSignin_ToCustomer() {
 
-        String email = "user@user.com";
-        String password = "password";
+        String email = "2@2.com";
+        String password = "123456";
         boolean Cus = true;
         boolean Store = false;
         String message = "customer logged successfully!";
         User user = new User();
-        Consumer<User> callback = captor.getValue();
+        user.type = "cus";
+//        Consumer<User> callback = captor.getValue();
 
         /** stubbing */
-        when(view.editEmail.getText().toString().trim()).thenReturn(email);
-        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        verify(model).LogIn(email, password, captor.capture());
+//        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+//        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        verify(model).LogIn(eq(email), eq(password), captor.capture());
+        Consumer<User> callback = captor.getValue();
         callback.accept(user);
 
         Presenter presenter = new Presenter(model, view);
@@ -279,12 +284,13 @@ public class ExampleUnitTest {
         boolean Store = true;
         String message = "store logged successfully!";
         User user = new User();
-        Consumer<User> callback = captor.getValue();
+//        Consumer<User> callback = captor.getValue();
 
         /** stubbing */
         when(view.editEmail.getText().toString().trim()).thenReturn(email);
         when(view.editPassword.getText().toString().trim()).thenReturn(password);
         verify(model).LogIn(email, password, captor.capture());
+        Consumer<User> callback = captor.getValue();
         callback.accept(user);
 
         Presenter presenter = new Presenter(model, view);
@@ -309,13 +315,14 @@ public class ExampleUnitTest {
     @Test
     public void testSignin_no_selected_type() {
 
-        String email = "user@user.com";
-        String password = "password";
+        String email = "2@2.com";
+        String password = "123456";
         boolean Cus = false;
         boolean Store = false;
         String message1 = "Please select login as Customer or StoreOwner!";
 //        String message2 = "Please select correct user type!";
         User user = new User();
+        user.type = "cus";
         Consumer<User> callback = captor.getValue();
 
         /** stubbing */
