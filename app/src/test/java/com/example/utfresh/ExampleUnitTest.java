@@ -186,56 +186,61 @@ public class ExampleUnitTest {
 //
 //    }
 
-//    @Test
-//    public void testSignin_user_NotFound() {
-//
-//        String email = "user@user.com";
-//        String password = "password";
-//        boolean Cus = true;
-//        boolean Store = false;
-//        String message = "Error!";
-//        User user = null;
-//
-////        Presenter presenter = new Presenter(model, view);
-////        presenter.SignIn(email, password, Cus, Store);
-//
-////        Consumer<User> callback = captor.getValue();
-//
-////        ArgumentCaptor<Consumer<User>> argument = ArgumentCaptor.forClass(Consumer<User>.class);
-////        verify(view).doSomething(argument.capture());
-////        assertEquals("John", argument.getValue().getName());
-//
-//        /** stubbing */
-////        when(view.editEmail.getText().toString().trim()).thenReturn(email);
-////        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-//        Presenter presenter = new Presenter(model, view);
-//        presenter.SignIn(email, password, Cus, Store);
-//        verify(model).LogIn(email, password, captor.capture());
-//        Consumer<User> callback = captor.getValue();
-//        callback.accept(user);
-//
-////        Presenter presenter = new Presenter(model, view);
-////        presenter.SignIn(email, password, Cus, Store);
-//
-////        verify(view, times(1)).NotFound();
-//
-//        /** verifying displayMessage with specific string value */
-//        verify(view).displayMessage(message);
-//
-//        /*** Argument captors ***/
-//        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-//        verify(view).displayMessage(captor.capture());
-//        assertEquals(captor.getValue(), message);
-//
-//        /*** Verifying order ***/
-//        InOrder order = inOrder(view, view);
-////        order.verify(model).LogIn(email,
-////                password,
-////                captor.capture());
-//        order.verify(view).NotFound();
-//        order.verify(view).displayMessage(message);
-//
-//    }
+    @Test
+    public void testSignin_user_NotFound() {
+
+        String email = "user@user.com";
+        String password = "password";
+        boolean Cus = true;
+        boolean Store = false;
+        String message = "Error!";
+        User user = null;
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email, password, Cus, Store);
+
+        Consumer<User> callback = captor.getValue();
+
+        ArgumentCaptor<Consumer<User>> argument = ArgumentCaptor.forClass(Consumer<User>.class);
+        verify(view).doSomething(argument.capture());
+        assertEquals("John", argument.getValue().getName());
+
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(mockService.Login(email, password, Consumer<User>(user.class))).thenAnswer(
+                new User() {
+                    Object answer(InvocationOnMock invocation) {
+                        ((Callback<User>) invocation.getArguments()[1]).reply(x);
+                        return null;
+                    }
+                });
+        verify(model).LogIn(email, password, captor.capture());
+        Consumer<User> callback = captor.getValue();
+        callback.accept(user);
+
+        Presenter presenter = new Presenter(model, view);
+        presenter.SignIn(email, password, Cus, Store);
+
+        verify(view, times(1)).NotFound();
+
+        /** verifying displayMessage with specific string value */
+        verify(view).displayMessage(message);
+
+        /*** Argument captors ***/
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(view).displayMessage(captor.capture());
+        assertEquals(captor.getValue(), message);
+
+        /*** Verifying order ***/
+        InOrder order = inOrder(view, view);
+//        order.verify(model).LogIn(email,
+//                password,
+//                captor.capture());
+        order.verify(view).NotFound();
+        order.verify(view).displayMessage(message);
+
+    }
 
     @Test
     public void testSignin_ToCustomer() {
@@ -250,8 +255,8 @@ public class ExampleUnitTest {
 //        Consumer<User> callback = captor.getValue();
 
         /** stubbing */
-//        when(view.editEmail.getText().toString().trim()).thenReturn(email);
-//        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
         verify(model).LogIn(eq(email), eq(password), captor.capture());
         Consumer<User> callback = captor.getValue();
         callback.accept(user);
@@ -361,11 +366,11 @@ public class ExampleUnitTest {
         User user = new User();
         Consumer<User> callback = captor.getValue();
 
-//        /** stubbing */
-//        when(view.editEmail.getText().toString().trim()).thenReturn(email);
-//        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-//        verify(model).LogIn(email, password, captor.capture());
-//        callback.accept(user);
+        /** stubbing */
+        when(view.editEmail.getText().toString().trim()).thenReturn(email);
+        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        verify(model).LogIn(email, password, captor.capture());
+        callback.accept(user);
 
         Presenter presenter = new Presenter(model, view);
         presenter.SignIn(email, password, Cus, Store);
