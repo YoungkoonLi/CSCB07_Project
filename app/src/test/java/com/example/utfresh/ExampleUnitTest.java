@@ -12,6 +12,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.function.Consumer;
@@ -208,7 +209,7 @@ public class ExampleUnitTest {
         /** stubbing */
         when(view.editEmail.getText().toString().trim()).thenReturn(email);
         when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        when(mock.Login(email, password, Consumer<User>(user.class))).thenAnswer(
+        when(mock.Login(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(null);
