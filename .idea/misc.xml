@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/B07 Project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/B07 Project/app/src/main/res/layout/activity_current_order.xml" value="0.14895833333333333" />
         <entry key="..\:/B07 Project/app/src/main/res/layout/activity_customer_main.xml" value="0.22395833333333334" />
         <entry key="..\:/B07 Project/app/src/main/res/layout/current_order_view.xml" value="0.18115942028985507" />
