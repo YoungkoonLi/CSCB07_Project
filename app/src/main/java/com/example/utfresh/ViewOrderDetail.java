@@ -52,7 +52,6 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable, 
 
         adapter = new OrderDetailAdapter(this);
 
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         uid = user.getUid();
