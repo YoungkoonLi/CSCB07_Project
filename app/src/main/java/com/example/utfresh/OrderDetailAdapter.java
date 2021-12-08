@@ -22,14 +22,14 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
 
     public class OrderDetailViewHolder extends RecyclerView.ViewHolder{
-        private TextView Product_Name, Price, Quantity, Category;
+        private TextView product_name, price, quantity, category;
 
         public OrderDetailViewHolder(@NonNull View itemView){
             super(itemView);
-            Product_Name = itemView.findViewById(R.id.Product_Name);
-            Price = itemView.findViewById(R.id.Price);
-            Quantity = itemView.findViewById(R.id.Quantity);
-            Category = itemView.findViewById(R.id.Category);
+            product_name = itemView.findViewById(R.id.Product_Name);
+            price = itemView.findViewById(R.id.Price);
+            quantity = itemView.findViewById(R.id.Quantity);
+            category = itemView.findViewById(R.id.Category);
 
         }
 
@@ -50,10 +50,10 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     @Override
     public void onBindViewHolder(@NonNull OrderDetailAdapter.OrderDetailViewHolder holder, int position) {
         OrderData data = list.get(position);
-        holder.Product_Name.setText(data.getProduct_name());
-        holder.Price.setText("$" + data.getPrice());
-        holder.Quantity.setText(data.getQuantity());
-        holder.Category.setText(data.getCategory());
+        holder.product_name.setText(data.getProduct_name());
+        holder.price.setText("$" + data.getPrice());
+        holder.quantity.setText(data.getQuantity());
+        holder.category.setText(data.getCategory());
 
 
     }

@@ -28,13 +28,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
 
     public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView Customer_Name, Order_Status, Store_Name;
+        private TextView customer_Name, order_Status, store_Name;
 
         public OrderViewHolder(@NonNull View itemView){
             super(itemView);
-            Customer_Name = itemView.findViewById(R.id.Customer_Name);
-            Order_Status = itemView.findViewById(R.id.Order_Status);
-            Store_Name = itemView.findViewById(R.id.Store_Name);
+            customer_Name = itemView.findViewById(R.id.Customer_Name);
+            order_Status = itemView.findViewById(R.id.Order_Status);
+            store_Name = itemView.findViewById(R.id.Store_Name);
             itemView.setOnClickListener(this);
 
         }
@@ -61,9 +61,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @Override
     public void onBindViewHolder(@NonNull OrderAdapter.OrderViewHolder holder, int position) {
         Order data = list.get(position);
-        holder.Customer_Name.setText(data.getCustomer_Name());
-        holder.Order_Status.setText(data.getOrder_Status());
-        holder.Store_Name.setText(data.getStore_Name());
+        holder.customer_Name.setText(data.getCustomer_Name());
+        holder.order_Status.setText(data.getOrder_Status());
+        holder.store_Name.setText(data.getStore_Name());
 
     }
 

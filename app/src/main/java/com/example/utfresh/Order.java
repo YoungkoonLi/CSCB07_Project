@@ -7,9 +7,9 @@ public class Order {
     //this class is for the getter method for the orders_activity
 
 
-    private String Order_Status;
-    private String Customer_Name;
-    private String Store_Name;
+    private String order_Status;
+    private String customer_Name;
+    private String store_Name;
 //    private ArrayList<OrderData> Item_List; //list of item that customer orders,
     //include product name, price, quantity, category
 
@@ -18,42 +18,42 @@ public class Order {
 
     }
 
-    public Order(String Customer_Name, String Store_Name){
+    public Order(String customer_Name, String store_Name){
         // the default Order_Status is Pending
-        this.Order_Status = "Pending";
-        this.Customer_Name = Customer_Name;
-        this.Store_Name = Store_Name;
+        this.order_Status = "Pending";
+        this.customer_Name = customer_Name;
+        this.store_Name = store_Name;
 //        this.Item_List = Item_List;
     }
 
-    public void SetOrderStatus(String Order_Status) {
+    public void SetOrderStatus(String order_Status) {
         // an Order_Status can only be Pending, Ready For Pick Up, or Complete
         String pending = "Pending";
         String ready = "Ready For Pick Up";
         String complete = "Complete";
 
-        if (! Order_Status.equals(pending) && ! Order_Status.equals(ready) &&
-                ! Order_Status.equals(complete)) {
+        if (! order_Status.equals(pending) && ! order_Status.equals(ready) &&
+                ! order_Status.equals(complete)) {
             // here, an error message should pop up to the user
             return;
         }
-        this.Order_Status = Order_Status;
+        this.order_Status = order_Status;
     }
 
     public String getOrder_Status() {
-        return Order_Status;
+        return order_Status;
     }
 
-    public void SetCustomer_Name(String Customer_Name) { this.Customer_Name = Customer_Name; }
+    public void SetCustomer_Name(String customer_Name) { this.customer_Name = customer_Name; }
 
     public String getCustomer_Name() {
-        return Customer_Name;
+        return customer_Name;
     }
 
-    public void SetStore_Name(String Store_Name) { this.Store_Name = Store_Name; }
+    public void SetStore_Name(String store_Name) { this.store_Name = store_Name; }
 
     public String getStore_Name() {
-        return Store_Name;
+        return store_Name;
     }
 
 //    public void SetItem_List(ArrayList<OrderData> Item_List) {this.Item_List = Item_List; }

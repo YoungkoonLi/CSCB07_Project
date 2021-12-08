@@ -7,41 +7,41 @@ public class OrderData implements Serializable {
     //this class is for the getter method in the DetailOrder_activity (after the owner click the
     //order in recyclerview to see the specific information about an order.
 
-    private String Product_Name;
-    private String Price;
-    private String Category;
-    private String Quantity;
+    private String product_name;
+    private String price;
+    private String category;
+    private String quantity;
 
     public OrderData(){}
-    public OrderData(String Product_Name, String Price, String Category, String Quantity){
-        this.Product_Name = Product_Name;
-        this.Price = Price;
-        this.Category = Category;
-        this.Quantity = Quantity;
+    public OrderData(String product_name, String price, String category, String quantity){
+        this.product_name = product_name;
+        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
     }
 
-    public void SetProduct_Name(String Product_Name) {this.Product_Name = Product_Name; }
+    public void SetProduct_Name(String product_name) {this.product_name = product_name; }
 
     public String getProduct_name() {
-        return Product_Name;
+        return product_name;
     }
 
-    public void SetPrice(String Price) {this.Price = Price; }
+    public void SetPrice(String price) {this.price = price; }
 
     public String getPrice() {
-        return Price;
+        return price;
     }
 
-    public void SetCategory(String Category) {this.Category = Category; }
+    public void SetCategory(String category) {this.category = category; }
 
     public String getCategory() {
-        return Category;
+        return category;
     }
 
-    public void SetQuantity(String Quantity) {this.Quantity = Quantity; }
+    public void SetQuantity(String quantity) {this.quantity = quantity; }
 
     public String getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
 }
