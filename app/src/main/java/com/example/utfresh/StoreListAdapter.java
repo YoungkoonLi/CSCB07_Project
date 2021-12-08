@@ -80,5 +80,4 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Stor
         this.IDs.addAll(IDs);
         notifyDataSetChanged();
     }
-
 }
