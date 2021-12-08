@@ -209,6 +209,7 @@ public class ExampleUnitTest {
         /** stubbing */
         when(view.editEmail.getText().toString().trim()).thenReturn(email);
         when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        //stubbing for callback method, noe sure whether this will work
         when(mock.Login(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
