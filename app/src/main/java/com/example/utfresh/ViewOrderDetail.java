@@ -127,7 +127,7 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable, 
             Toast.makeText(this, "Please choose an order status", Toast.LENGTH_SHORT).show();
         }else{
             status = item;
-            databaseReference.child(uid).child(key).child("OrderInfo").child("Order_Status").setValue(status);
+            databaseReference.child(uid).child(key).child("OrderInfo").child("order_Status").setValue(status);
             Toast.makeText(this, "Updated successfully", Toast.LENGTH_SHORT).show();
         }
 
