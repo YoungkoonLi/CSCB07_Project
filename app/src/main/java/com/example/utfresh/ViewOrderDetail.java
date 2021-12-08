@@ -56,7 +56,6 @@ public class ViewOrderDetail extends AppCompatActivity implements Serializable, 
         databaseReference = FirebaseDatabase.getInstance().getReference("Order");
         uid = user.getUid();
 
-
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swip);
         recyclerView = (RecyclerView) findViewById(R.id.Item_List);
 
