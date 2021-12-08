@@ -268,9 +268,9 @@ public class ExampleUnitTest {
         verify(model).LogIn(eq(email), eq(password), captor.capture());
         Consumer<User> callback = captor.getValue();
         callback.accept(user);
-        verify(model).LogIn(eq(email), eq(password), captor.capture());
-        Consumer<User> callback = captor.getValue();
-        callback.accept(user);
+//        verify(model).LogIn(eq(email), eq(password), captor.capture());
+//        Consumer<User> callback = captor.getValue();
+//        callback.accept(user);
 
         Presenter presenter = new Presenter(model, view);
         presenter.SignIn(email, password, Cus, Store);
@@ -352,7 +352,7 @@ public class ExampleUnitTest {
         /** stubbing */
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+        when(model.LogIn(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
@@ -396,7 +396,7 @@ public class ExampleUnitTest {
         /** stubbing */
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+        when(model.LogIn(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
