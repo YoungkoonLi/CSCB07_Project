@@ -32,11 +32,11 @@ public class Order {
         String ready = "Ready For Pick Up";
         String complete = "Complete";
 
-        if (! order_Status.equals(pending) && ! order_Status.equals(ready) &&
-                ! order_Status.equals(complete)) {
-            // here, an error message should pop up to the user
-            return;
-        }
+//        if (! order_Status.equals(pending) && ! order_Status.equals(ready) &&
+//                ! order_Status.equals(complete)) {
+//            // here, an error message should pop up to the user
+//            return;
+//        }
         this.order_Status = order_Status;
     }
 
