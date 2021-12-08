@@ -210,7 +210,7 @@ public class ExampleUnitTest {
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
         /**stubbing for callback method, noe sure whether this will work**/
-        when(mock.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(null);
@@ -258,7 +258,7 @@ public class ExampleUnitTest {
         /** stubbing */
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        when(mock.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
@@ -305,7 +305,7 @@ public class ExampleUnitTest {
         /** stubbing */
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        when(mock.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
@@ -351,7 +351,7 @@ public class ExampleUnitTest {
         /** stubbing */
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        when(mock.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
@@ -395,6 +395,13 @@ public class ExampleUnitTest {
         /** stubbing */
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
+        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+                new User() {
+                    Object answer(InvocationOnMock invocation) {
+                        ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
+                        return null;
+                    }
+                });
         verify(model).LogIn(email, password, captor.capture());
         callback.accept(user);
 
