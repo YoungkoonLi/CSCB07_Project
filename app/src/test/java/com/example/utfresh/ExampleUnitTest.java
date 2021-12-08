@@ -200,7 +200,7 @@ public class ExampleUnitTest {
         Presenter presenter = new Presenter(model, view);
         presenter.SignIn(email, password, Cus, Store);
 
-        Consumer<User> callback = captor.getValue();
+//        Consumer<User> callback = captor.getValue();
 
         ArgumentCaptor<Consumer<User>> argument = ArgumentCaptor.forClass(Consumer<User>.class);
 //        verify(view).doSomething(argument.capture());
@@ -210,19 +210,19 @@ public class ExampleUnitTest {
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
         /**stubbing for callback method, noe sure whether this will work**/
-        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+        when(model.LogIn(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(null);
                         return null;
                     }
                 });
-        verify(model).LogIn(email, password, captor.capture());
+        verify(model).LogIn(eq(email), eq(password), captor.capture());
         Consumer<User> callback = captor.getValue();
         callback.accept(user);
-
-        Presenter presenter = new Presenter(model, view);
-        presenter.SignIn(email, password, Cus, Store);
+//
+//        Presenter presenter = new Presenter(model, view);
+//        presenter.SignIn(email, password, Cus, Store);
 
         /** verifying displayMessage with specific string value */
         verify(view).displayMessage(message);
@@ -258,14 +258,14 @@ public class ExampleUnitTest {
         /** stubbing */
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+        when(model.LogIn(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
                         return null;
                     }
                 });
-        verify(model).LogIn(email, password, captor.capture());
+        verify(model).LogIn(eq(email), eq(password), captor.capture());
         Consumer<User> callback = captor.getValue();
         callback.accept(user);
         verify(model).LogIn(eq(email), eq(password), captor.capture());
@@ -300,19 +300,20 @@ public class ExampleUnitTest {
         boolean Store = true;
         String message = "store logged successfully!";
         User user = new User();
+        user.type = "store";
 //        Consumer<User> callback = captor.getValue();
 
         /** stubbing */
 //        when(view.editEmail.getText().toString().trim()).thenReturn(email);
 //        when(view.editPassword.getText().toString().trim()).thenReturn(password);
-        when(model.Login(email, password, Consumer<User>(User.class))).thenAnswer(
+        when(model.LogIn(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
                         ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
                         return null;
                     }
                 });
-        verify(model).LogIn(email, password, captor.capture());
+        verify(model).LogIn(eq(email), eq(password), captor.capture());
         Consumer<User> callback = captor.getValue();
         callback.accept(user);
 
