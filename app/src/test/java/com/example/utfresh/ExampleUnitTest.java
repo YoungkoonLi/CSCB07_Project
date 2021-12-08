@@ -261,7 +261,7 @@ public class ExampleUnitTest {
         when(model.LogIn(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
-                        ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
+                        ((Consumer<User>) invocation.getMock()).reply(Consumer<User>);
                         return null;
                     }
                 });
@@ -309,7 +309,7 @@ public class ExampleUnitTest {
         when(model.LogIn(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
-                        ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
+                        ((Consumer<User>) invocation.getMock()).reply(Consumer<User>);
                         return null;
                     }
                 });
@@ -355,7 +355,7 @@ public class ExampleUnitTest {
         when(model.LogIn(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
-                        ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
+                        ((Consumer<User>) invocation.getMock()).reply(Consumer<User>);
                         return null;
                     }
                 });
@@ -399,7 +399,7 @@ public class ExampleUnitTest {
         when(model.LogIn(email, password, Consumer<User>(User.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
-                        ((Consumer<User>) invocation.getMock).reply(Consumer<User>);
+                        ((Consumer<User>) invocation.getMock()).reply(Consumer<User>);
                         return null;
                     }
                 });

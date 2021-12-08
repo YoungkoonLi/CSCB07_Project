@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
 
     }
 
-    public void Setting(View view) {
-        startActivity(new Intent(MainActivity.this, Setting.class));
-    }
+//    public void Setting(View view) {
+//        startActivity(new Intent(MainActivity.this, Setting.class));
+//    }
 
     public void Remember(){
         boolean re = preferences.getBoolean("remember", false);
@@ -186,13 +186,13 @@ public class MainActivity extends AppCompatActivity implements Contract.View{
     }
 
 
-    public void customer_main(View view) {
-        startActivity(new Intent(MainActivity.this, CustomerMain.class));
-    }
-
-    public void Add_new_product(View view) {
-        startActivity(new Intent(MainActivity.this, AddNewProduct.class));
-    }
+//    public void customer_main(View view) {
+//        startActivity(new Intent(MainActivity.this, CustomerMain.class));
+//    }
+//
+//    public void Add_new_product(View view) {
+//        startActivity(new Intent(MainActivity.this, AddNewProduct.class));
+//    }
 
     public void displayMessage(String message){
         TextView textView = findViewById(R.id.textView);
