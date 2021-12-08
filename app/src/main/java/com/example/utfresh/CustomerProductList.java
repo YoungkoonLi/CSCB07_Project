@@ -32,7 +32,6 @@ public class CustomerProductList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_product_list);
-
         names = new ArrayList<>();
         prices = new ArrayList<>();
         categories = new ArrayList<>();
@@ -94,6 +93,7 @@ public class CustomerProductList extends AppCompatActivity {
         intent.putExtra("product_names", names);
         intent.putExtra("prices", prices);
         intent.putExtra("categories", categories);
+        intent.putExtra("quantities", productAdapter.quantities);
         startActivity(intent);
     }
 

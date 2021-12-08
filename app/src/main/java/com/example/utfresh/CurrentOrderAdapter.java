@@ -9,6 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CurrentOrderAdapter extends RecyclerView.Adapter<CurrentOrderAdapter.CurrentOrderViewHolder> {
@@ -16,12 +19,14 @@ public class CurrentOrderAdapter extends RecyclerView.Adapter<CurrentOrderAdapte
     ArrayList<String> names;
     ArrayList<String> prices;
     ArrayList<String> categories;
+    ArrayList<Integer> quantities;
     public CurrentOrderAdapter(Context context){
         this.context = context;
         //Initialize to empty list. Awaiting data from firebase.
         this.names = new ArrayList<>();
         this.prices = new ArrayList<>();
         this.categories = new ArrayList<>();
+        this.quantities = new ArrayList<>();
     }
 
     @NonNull
@@ -36,6 +41,7 @@ public class CurrentOrderAdapter extends RecyclerView.Adapter<CurrentOrderAdapte
         holder.name.setText(names.get(position));
         holder.price.setText("$" + prices.get(position));
         holder.category.setText(categories.get(position));
+        holder.quantity.setText(String.valueOf(quantities.get(position)));
     }
 
     @Override
@@ -47,22 +53,24 @@ public class CurrentOrderAdapter extends RecyclerView.Adapter<CurrentOrderAdapte
      * This is not done in the constructor because data must be retrieved from firebase before
      * populating the lists.
      */
-    public void setAllList(ArrayList<String> names, ArrayList<String> prices, ArrayList<String> categories){
+    public void setAllList(ArrayList<String> names, ArrayList<String> prices, ArrayList<String> categories, ArrayList<Integer> quantities){
         this.names.addAll(names);
         this.prices.addAll(prices);
         this.categories.addAll(categories);
-        notifyDataSetChanged();
+        this.quantities.addAll(quantities);
     }
 
     public class CurrentOrderViewHolder extends RecyclerView.ViewHolder{
         TextView name;
         TextView price;
         TextView category;
+        TextView quantity;
         public CurrentOrderViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.product_name);
-            price = itemView.findViewById(R.id.product_price);
-            category = itemView.findViewById(R.id.product_category);
+            name = itemView.findViewById(R.id.order_product_name);
+            price = itemView.findViewById(R.id.order_product_price);
+            category = itemView.findViewById(R.id.order_product_category);
+            quantity = itemView.findViewById(R.id.order_product_number);
         }
     }
 }
