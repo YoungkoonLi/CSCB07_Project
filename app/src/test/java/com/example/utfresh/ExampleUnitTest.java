@@ -211,7 +211,7 @@ public class ExampleUnitTest {
         when(mock.Login(email, password, Consumer<User>(user.class))).thenAnswer(
                 new User() {
                     Object answer(InvocationOnMock invocation) {
-                        ((Callback<User>) invocation.getMock).reply(null);
+                        ((Consumer<User>) invocation.getMock).reply(null);
                         return null;
                     }
                 });
